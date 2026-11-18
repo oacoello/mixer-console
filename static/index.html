@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Consola de Audio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700&family=Roboto+Flex:opsz,wght@8..144,400;8..144,500;8..144,600&display=swap" rel="stylesheet" />
+  <!--__INLINE_CSS__-->
+</head>
+<body data-mode="dark">
+  <div class="ambient-bg" aria-hidden="true">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+  </div>
+
+  <div class="app-shell">
+    <!-- Top Compact Expressive Bar -->
+    <header class="top-bar">
+      <div class="brand">
+        <span class="brand-dot"></span>
+        <span id="status-pill" class="status-pill hidden"></span>
+      </div>
+
+      <div class="top-actions">
+        <button id="btn-pin" class="m3-chip-btn" title="Anclar ventana encima de las demás">
+          <svg viewBox="0 0 24 24" class="icon-sm"><path d="M16 12V4h1V2H7v2h1v8l-2 2v2h5.2v6h1.6v-6H18v-2l-2-2z"/></svg>
+          <span id="pin-label">Anclar</span>
+        </button>
+
+        <select id="select-fade" class="m3-pill-select" title="Duración de transición suave al cambiar de preset">
+          <option value="0">Fade 0ms</option>
+          <option value="300">Fade 300ms</option>
+          <option value="500">Fade 500ms</option>
+          <option value="1000">Fade 1000ms</option>
+          <option value="1500">Fade 1500ms</option>
+          <option value="2000">Fade 2000ms</option>
+        </select>
+
+        <button id="btn-new-preset" class="m3-tonal-btn" title="Crear nuevo preset">
+          + Preset
+        </button>
+
+        <button id="btn-settings" class="m3-icon-btn" title="Configuración">
+          <svg viewBox="0 0 24 24" class="icon-sm"><path d="M19.14 12.94c.04-.3.06-.61.06-.94 0-.32-.02-.64-.07-.94l2.03-1.58a.49.49 0 0 0 .12-.61l-1.92-3.32a.49.49 0 0 0-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54a.48.48 0 0 0-.48-.41h-3.84a.48.48 0 0 0-.48.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96a.49.49 0 0 0-.59.22L2.74 8.87a.48.48 0 0 0 .12.61l2.03 1.58c-.05.3-.07.62-.07.94s.02.64.07.94l-2.03 1.58a.49.49 0 0 0-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.26.41.48.41h3.84c.24 0 .44-.17.48-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.47-.12-.61l-2.01-1.58zM12 15.6A3.6 3.6 0 1 1 12 8.4a3.6 3.6 0 0 1 0 7.2z"/></svg>
+        </button>
+      </div>
+    </header>
+
+    <!-- Presets Strip -->
+    <section class="presets-section">
+      <div id="presets-list" class="presets-list"></div>
+      <div id="hotkey-warning" class="hotkey-warning hidden"></div>
+    </section>
+
+    <!-- Mixer Channels -->
+    <main id="channels-list" class="channels-list"></main>
+
+    <!-- Spotify Now Playing Footer -->
+    <footer class="spotify-bar">
+      <div class="spotify-info">
+        <span class="spotify-badge" aria-hidden="true">
+          <svg viewBox="0 0 24 24" class="icon-sm"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm4.59 14.42a.62.62 0 0 1-.86.21c-2.35-1.44-5.31-1.76-8.8-.96a.62.62 0 1 1-.28-1.21c3.82-.87 7.1-.5 9.73 1.11.29.18.38.56.21.85zm1.22-2.72a.78.78 0 0 1-1.07.26c-2.69-1.65-6.79-2.13-9.97-1.17a.78.78 0 0 1-.45-1.5c3.64-1.1 8.16-.57 11.24 1.33.36.22.48.7.25 1.08zm.1-2.83C14.7 8.95 9.37 8.77 6.3 9.7a.94.94 0 1 1-.55-1.8c3.53-1.07 9.4-.86 13.11 1.34a.94.94 0 0 1-.95 1.63z"/></svg>
+        </span>
+        <div class="spotify-text">
+          <span id="sp-title" class="sp-title">Spotify sin reproducción</span>
+          <span id="sp-artist" class="sp-artist"></span>
+        </div>
+      </div>
+      <div class="spotify-controls">
+        <button id="btn-sp-prev" class="m3-icon-btn sm" title="Anterior">
+          <svg viewBox="0 0 24 24" class="icon-sm"><path d="M6 6h2v12H6zm3.5 6 8.5 6V6z"/></svg>
+        </button>
+        <button id="btn-sp-play" class="m3-tonal-icon-btn" title="Reproducir / Pausar">
+          <svg id="icon-sp-play" viewBox="0 0 24 24" class="icon-sm"><path d="M8 5v14l11-7z"/></svg>
+          <svg id="icon-sp-pause" viewBox="0 0 24 24" class="icon-sm hidden"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+        </button>
+        <button id="btn-sp-next" class="m3-icon-btn sm" title="Siguiente">
+          <svg viewBox="0 0 24 24" class="icon-sm"><path d="M6 18l8.5-6L6 6v12zM16 6v12h2V6h-2z"/></svg>
+        </button>
+      </div>
+    </footer>
+  </div>
+
+  <!-- Modal Editor de Preset (aprovecha todo el alto vertical) -->
+  <div id="preset-modal" class="modal-backdrop hidden">
+    <div class="m3-dialog tall">
+      <div class="dialog-header">
+        <h2 id="dialog-title">Preset</h2>
+        <button id="btn-capture-current" class="m3-tonal-btn compact" title="Guardar los volúmenes actuales de todas las apps abiertas">
+          <svg viewBox="0 0 24 24" class="icon-xs"><path d="M9 3 7.17 5H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2h-3.17L15 3H9zm3 15a5 5 0 1 1 0-10 5 5 0 0 1 0 10z"/></svg>
+          Capturar actuales
+        </button>
+      </div>
+
+      <div class="dialog-body">
+        <div class="field-group">
+          <label class="field-label" for="input-preset-name">Nombre</label>
+          <input id="input-preset-name" class="m3-input" type="text" placeholder="Ej. Música, Estudio..." />
+        </div>
+
+        <div class="hotkey-row">
+          <button id="btn-hk-enable" class="m3-chip-btn">Atajo</button>
+          <div id="hk-controls" class="hk-controls">
+            <button id="btn-hk-ctrl" class="m3-chip-btn small">Ctrl</button>
+            <button id="btn-hk-alt" class="m3-chip-btn small">Alt</button>
+            <button id="btn-hk-shift" class="m3-chip-btn small">Shift</button>
+            <select id="select-hk-key" class="m3-select"></select>
+          </div>
+        </div>
+
+        <div id="editor-rules" class="editor-rules"></div>
+
+        <div class="add-rule-row">
+          <select id="select-add-app" class="m3-select flex-1">
+            <option value="">+ Agregar app...</option>
+          </select>
+          <input id="input-custom-exe" class="m3-input custom-exe" type="text" placeholder="ej. spotify.exe" />
+          <button id="btn-add-custom" class="m3-tonal-btn compact">Agregar</button>
+        </div>
+      </div>
+
+      <div class="dialog-footer">
+        <button id="btn-editor-delete" class="m3-text-btn danger">Eliminar</button>
+        <div class="spacer"></div>
+        <button id="btn-editor-cancel" class="m3-text-btn">Cancelar</button>
+        <button id="btn-editor-save" class="m3-filled-btn">Guardar</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal de Configuración -->
+  <div id="settings-modal" class="modal-backdrop hidden">
+    <div class="m3-dialog compact-dialog">
+      <div class="dialog-header">
+        <h2>Configuración</h2>
+      </div>
+      <div class="dialog-body">
+        <div class="setting-row">
+          <div class="setting-info">
+            <span class="setting-title">Apariencia</span>
+            <span class="setting-desc">Elige entre modo oscuro o claro</span>
+          </div>
+          <div class="segmented-group">
+            <button id="btn-mode-dark" class="m3-chip-btn small">Oscuro</button>
+            <button id="btn-mode-light" class="m3-chip-btn small">Claro</button>
+          </div>
+        </div>
+        <p class="setting-note">
+          Para cerrar la aplicación por completo, haz clic derecho en el ícono de la bandeja del sistema y elige <strong>Salir</strong>.
+        </p>
+      </div>
+      <div class="dialog-footer">
+        <div class="spacer"></div>
+        <button id="btn-settings-close" class="m3-filled-btn">Listo</button>
+      </div>
+    </div>
+  </div>
+
+  <!--__INLINE_JS__-->
+</body>
+</html>

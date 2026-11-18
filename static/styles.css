@@ -1,0 +1,896 @@
+/* ==========================================================================
+   Material 3 Expressive — Consola de Audio Compacta
+   ========================================================================== */
+:root {
+  --font-display: 'Plus Jakarta Sans', 'Segoe UI Variable', system-ui, -apple-system, sans-serif;
+  --font-body: 'Roboto Flex', 'Segoe UI Variable', system-ui, -apple-system, sans-serif;
+  --ease-expressive: cubic-bezier(0.2, 0.0, 0, 1.0);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+
+  --radius-xl: 24px;
+  --radius-lg: 18px;
+  --radius-md: 12px;
+  --radius-pill: 9999px;
+}
+
+body[data-mode="dark"] {
+  --md-surface: #121318;
+  --md-surface-container-low: #1A1B22;
+  --md-surface-container: #20222B;
+  --md-surface-container-high: #2A2C37;
+  --md-surface-container-highest: #343744;
+  --md-on-surface: #E5E6F0;
+  --md-on-surface-variant: #B8BAC9;
+  --md-outline: #8D90A1;
+  --md-outline-variant: #434656;
+
+  --md-primary: #BAC3FF;
+  --md-on-primary: #1B2770;
+  --md-primary-container: #333F8A;
+  --md-on-primary-container: #DDE1FF;
+
+  --md-secondary-container: #3B3D54;
+  --md-on-secondary-container: #E0E1F9;
+
+  --md-tertiary: #FFB1C8;
+  --md-on-tertiary: #5E1132;
+  --md-tertiary-container: #732A48;
+  --md-on-tertiary-container: #FFD9E3;
+
+  --md-error: #FFB4AB;
+  --md-error-container: #93000A;
+  --md-on-error-container: #FFDAD6;
+
+  --md-orb-1: rgba(186, 195, 255, 0.09);
+  --md-orb-2: rgba(255, 177, 200, 0.07);
+}
+
+body[data-mode="light"] {
+  --md-surface: #F7F7FC;
+  --md-surface-container-low: #FFFFFF;
+  --md-surface-container: #EFEFFA;
+  --md-surface-container-high: #E5E6F5;
+  --md-surface-container-highest: #DBDCEE;
+  --md-on-surface: #1A1B26;
+  --md-on-surface-variant: #4B4D61;
+  --md-outline: #76788C;
+  --md-outline-variant: #C9CBD9;
+
+  --md-primary: #4A55A2;
+  --md-on-primary: #FFFFFF;
+  --md-primary-container: #DDE1FF;
+  --md-on-primary-container: #141E61;
+
+  --md-secondary-container: #E2E1F6;
+  --md-on-secondary-container: #22233B;
+
+  --md-tertiary: #8C4A60;
+  --md-on-tertiary: #FFFFFF;
+  --md-tertiary-container: #FFD9E3;
+  --md-on-tertiary-container: #3B071D;
+
+  --md-error: #BA1A1A;
+  --md-error-container: #FFDAD6;
+  --md-on-error-container: #410002;
+
+  --md-orb-1: rgba(74, 85, 162, 0.12);
+  --md-orb-2: rgba(140, 74, 96, 0.09);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  user-select: none;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  font-family: var(--font-body);
+  background: var(--md-surface);
+  color: var(--md-on-surface);
+  transition: background 0.35s var(--ease-expressive), color 0.35s var(--ease-expressive);
+}
+
+.ambient-bg {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(55px);
+}
+
+.orb-1 {
+  width: 240px;
+  height: 240px;
+  top: -80px;
+  left: -60px;
+  background: var(--md-orb-1);
+}
+
+.orb-2 {
+  width: 220px;
+  height: 220px;
+  bottom: -70px;
+  right: -50px;
+  background: var(--md-orb-2);
+}
+
+.app-shell {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  padding: 10px;
+  gap: 8px;
+}
+
+/* ==========================================================================
+   Top Bar
+   ========================================================================== */
+.top-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 6px 10px;
+  background: var(--md-surface-container);
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--md-outline-variant);
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  min-width: 0;
+}
+
+.brand-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--md-primary);
+  box-shadow: 0 0 10px var(--md-primary);
+  flex-shrink: 0;
+}
+
+.brand-title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: -0.01em;
+}
+
+.status-pill {
+  font-size: 10.5px;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: var(--radius-pill);
+  background: var(--md-tertiary-container);
+  color: var(--md-on-tertiary-container);
+  white-space: nowrap;
+  animation: popIn 0.25s var(--ease-spring);
+}
+
+.top-actions {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  flex-shrink: 0;
+}
+
+/* ==========================================================================
+   Material 3 Expressive Buttons & Chips (Shape Morphing!)
+   ========================================================================== */
+button {
+  font-family: var(--font-body);
+  border: none;
+  outline: none;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  transition:
+    transform 0.22s var(--ease-spring),
+    border-radius 0.2s var(--ease-expressive),
+    background-color 0.2s var(--ease-expressive),
+    color 0.2s var(--ease-expressive);
+}
+
+button:active {
+  transform: scale(0.95);
+  border-radius: var(--radius-md) !important;
+}
+
+.icon-sm {
+  width: 15px;
+  height: 15px;
+  fill: currentColor;
+}
+
+.icon-xs {
+  width: 13px;
+  height: 13px;
+  fill: currentColor;
+}
+
+.m3-pill-select {
+  height: 28px;
+  padding: 0 8px;
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--md-outline-variant);
+  background: var(--md-surface-container-low);
+  color: var(--md-on-surface);
+  font-family: var(--font-body);
+  font-size: 11.5px;
+  font-weight: 600;
+  outline: none;
+  cursor: pointer;
+}
+
+.m3-chip-btn {
+  height: 28px;
+  padding: 0 10px;
+  border-radius: var(--radius-pill);
+  background: var(--md-surface-container-high);
+  color: var(--md-on-surface-variant);
+  font-size: 11.5px;
+  font-weight: 600;
+}
+
+.m3-chip-btn.small {
+  height: 26px;
+  padding: 0 9px;
+  font-size: 11px;
+}
+
+.m3-chip-btn.outlined {
+  background: transparent;
+  border: 1px solid var(--md-outline-variant);
+}
+
+.m3-chip-btn.active {
+  background: var(--md-primary-container);
+  color: var(--md-on-primary-container);
+  border-color: transparent;
+  border-radius: 10px;
+}
+
+.m3-tonal-btn {
+  height: 28px;
+  padding: 0 11px;
+  border-radius: var(--radius-pill);
+  background: var(--md-secondary-container);
+  color: var(--md-on-secondary-container);
+  font-size: 11.5px;
+  font-weight: 600;
+}
+
+.m3-tonal-btn.compact {
+  height: 26px;
+  padding: 0 10px;
+  font-size: 11px;
+}
+
+.m3-filled-btn {
+  height: 30px;
+  padding: 0 14px;
+  border-radius: var(--radius-pill);
+  background: var(--md-primary);
+  color: var(--md-on-primary);
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.m3-text-btn {
+  height: 30px;
+  padding: 0 10px;
+  border-radius: var(--radius-pill);
+  background: transparent;
+  color: var(--md-primary);
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.m3-text-btn.danger {
+  color: var(--md-error);
+}
+
+.m3-icon-btn {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--md-surface-container-high);
+  color: var(--md-on-surface-variant);
+}
+
+.m3-icon-btn.sm {
+  width: 26px;
+  height: 26px;
+  background: transparent;
+}
+
+.m3-icon-btn.sm:hover {
+  background: var(--md-surface-container-highest);
+  color: var(--md-on-surface);
+}
+
+.m3-tonal-icon-btn {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: var(--md-primary);
+  color: var(--md-on-primary);
+}
+
+.m3-icon-btn.danger:hover {
+  background: var(--md-error-container);
+  color: var(--md-on-error-container);
+}
+
+/* ==========================================================================
+   Spotify Now Playing Footer
+   ========================================================================== */
+.spotify-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 6px 10px;
+  background: var(--md-surface-container);
+  border: 1px solid var(--md-outline-variant);
+  border-radius: var(--radius-lg);
+}
+
+.spotify-info {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+  flex: 1;
+}
+
+.spotify-badge {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: var(--md-secondary-container);
+  color: var(--md-primary);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.spotify-text {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.sp-title {
+  font-size: 11.5px;
+  font-weight: 600;
+  color: var(--md-on-surface);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.sp-artist {
+  font-size: 10.5px;
+  color: var(--md-on-surface-variant);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.spotify-controls {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  flex-shrink: 0;
+}
+
+/* ==========================================================================
+   Presets Strip
+   ========================================================================== */
+.presets-section {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.presets-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.preset-group {
+  display: inline-flex;
+  align-items: center;
+  background: var(--md-surface-container);
+  border: 1px solid var(--md-outline-variant);
+  border-radius: var(--radius-pill);
+  padding: 2px 3px 2px 3px;
+  transition: all 0.25s var(--ease-expressive);
+}
+
+.preset-group.active {
+  background: var(--md-primary-container);
+  border-color: var(--md-primary);
+  border-radius: 14px;
+}
+
+.preset-trigger {
+  height: 24px;
+  padding: 0 9px;
+  border-radius: var(--radius-pill);
+  background: transparent;
+  color: var(--md-on-surface);
+  font-size: 11.5px;
+  font-weight: 600;
+}
+
+.preset-group.active .preset-trigger {
+  color: var(--md-on-primary-container);
+}
+
+.preset-kbd {
+  font-size: 10px;
+  font-weight: 600;
+  padding: 1px 6px;
+  border-radius: var(--radius-pill);
+  background: var(--md-surface-container-highest);
+  color: var(--md-on-surface-variant);
+}
+
+.preset-group.active .preset-kbd {
+  background: var(--md-primary);
+  color: var(--md-on-primary);
+}
+
+.preset-edit-btn {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: transparent;
+  color: var(--md-on-surface-variant);
+  font-size: 11px;
+}
+
+.preset-edit-btn:hover {
+  background: var(--md-surface-container-highest);
+  color: var(--md-on-surface);
+}
+
+.hotkey-warning {
+  font-size: 11px;
+  color: var(--md-error);
+  padding: 2px 6px;
+}
+
+/* ==========================================================================
+   Mixer Channels (Compact Material 3 Expressive Cards)
+   ========================================================================== */
+.channels-list {
+  flex: 1;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding-right: 2px;
+}
+
+.channels-list::-webkit-scrollbar {
+  width: 5px;
+}
+.channels-list::-webkit-scrollbar-thumb {
+  background: var(--md-outline-variant);
+  border-radius: 99px;
+}
+
+.channel-card {
+  background: var(--md-surface-container-low);
+  border: 1px solid var(--md-outline-variant);
+  border-radius: var(--radius-lg);
+  padding: 8px 11px 7px 11px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  transition: border-color 0.2s var(--ease-expressive), background 0.2s var(--ease-expressive);
+}
+
+.channel-card.master {
+  background: var(--md-primary-container);
+  border-color: transparent;
+}
+
+.channel-card.master .channel-name,
+.channel-card.master .channel-pct {
+  color: var(--md-on-primary-container);
+}
+
+.channel-card.active-audio {
+  border-color: var(--md-primary);
+}
+
+.channel-main {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.channel-identity {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  width: 120px;
+  flex-shrink: 0;
+  min-width: 0;
+}
+
+.app-icon {
+  width: 22px;
+  height: 22px;
+  border-radius: 6px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+.app-icon-fallback {
+  width: 22px;
+  height: 22px;
+  border-radius: 7px;
+  background: var(--md-surface-container-highest);
+  color: var(--md-primary);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  flex-shrink: 0;
+}
+
+.channel-card.master .app-icon-fallback {
+  background: var(--md-primary);
+  color: var(--md-on-primary);
+}
+
+.channel-name {
+  font-size: 12.5px;
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Material 3 Expressive Thick Slider */
+.m3-slider-wrap {
+  position: relative;
+  flex: 1;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  touch-action: none;
+}
+
+.m3-slider-track {
+  position: relative;
+  width: 100%;
+  height: 12px;
+  border-radius: var(--radius-pill);
+  background: var(--md-surface-container-highest);
+  overflow: hidden;
+}
+
+.channel-card.master .m3-slider-track {
+  background: rgba(0, 0, 0, 0.22);
+}
+
+.m3-slider-fill {
+  height: 100%;
+  border-radius: var(--radius-pill);
+  background: var(--md-primary);
+  transition: width 0.05s linear;
+}
+
+.channel-card.muted .m3-slider-fill {
+  background: var(--md-outline);
+}
+
+.m3-slider-thumb {
+  position: absolute;
+  top: 50%;
+  width: 4px;
+  height: 22px;
+  border-radius: var(--radius-pill);
+  background: var(--md-primary);
+  transform: translate(-50%, -50%);
+  box-shadow: 0 0 0 2px var(--md-surface-container-low);
+  pointer-events: none;
+  transition: width 0.15s var(--ease-spring), height 0.15s var(--ease-spring);
+}
+
+.channel-card.master .m3-slider-thumb {
+  box-shadow: 0 0 0 2px var(--md-primary-container);
+}
+
+.m3-slider-wrap:active .m3-slider-thumb,
+.m3-slider-wrap.dragging .m3-slider-thumb {
+  width: 2px;
+  height: 26px;
+}
+
+.channel-pct {
+  width: 34px;
+  text-align: right;
+  font-size: 11.5px;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  color: var(--md-on-surface-variant);
+  flex-shrink: 0;
+}
+
+.mute-btn {
+  height: 26px;
+  min-width: 56px;
+  padding: 0 9px;
+  border-radius: var(--radius-pill);
+  background: var(--md-surface-container-high);
+  color: var(--md-on-surface-variant);
+  font-size: 11px;
+  font-weight: 600;
+  flex-shrink: 0;
+}
+
+.mute-btn.muted {
+  background: var(--md-error-container);
+  color: var(--md-on-error-container);
+  border-radius: 10px;
+}
+
+/* Real-time VU Meter Bar */
+.vu-track {
+  width: 100%;
+  height: 4px;
+  border-radius: var(--radius-pill);
+  background: var(--md-surface-container-highest);
+  overflow: hidden;
+}
+
+.channel-card.master .vu-track {
+  background: rgba(0, 0, 0, 0.18);
+}
+
+.vu-fill {
+  height: 100%;
+  width: 0%;
+  border-radius: var(--radius-pill);
+  background: linear-gradient(90deg, #4ade80 0%, #facc15 72%, #ef4444 95%);
+  transition: width 0.04s linear;
+}
+
+.empty-state {
+  padding: 28px 16px;
+  text-align: center;
+  font-size: 12.5px;
+  color: var(--md-on-surface-variant);
+  background: var(--md-surface-container);
+  border-radius: var(--radius-lg);
+}
+
+/* ==========================================================================
+   Modal Dialog (Material 3 Expressive)
+   ========================================================================== */
+.hidden {
+  display: none !important;
+}
+
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  background: rgba(0, 0, 0, 0.55);
+  backdrop-filter: blur(6px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px;
+}
+
+.m3-dialog {
+  width: 100%;
+  max-height: 100%;
+  background: var(--md-surface-container-high);
+  border: 1px solid var(--md-outline-variant);
+  border-radius: var(--radius-xl);
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  animation: popIn 0.25s var(--ease-spring);
+}
+
+.m3-dialog.tall {
+  height: 100%;
+}
+
+.m3-dialog.compact-dialog {
+  height: auto;
+}
+
+.dialog-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.dialog-header h2 {
+  font-family: var(--font-display);
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.dialog-body {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+}
+
+.setting-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 10px 12px;
+  border-radius: var(--radius-md);
+  background: var(--md-surface-container);
+}
+
+.setting-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.setting-title {
+  font-size: 12.5px;
+  font-weight: 600;
+}
+
+.setting-desc {
+  font-size: 11px;
+  color: var(--md-on-surface-variant);
+}
+
+.segmented-group {
+  display: flex;
+  gap: 4px;
+}
+
+.setting-note {
+  font-size: 11px;
+  line-height: 1.45;
+  color: var(--md-on-surface-variant);
+  padding: 4px 2px;
+}
+
+.field-group {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.field-label {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--md-on-surface-variant);
+}
+
+.m3-input, .m3-select {
+  height: 30px;
+  padding: 0 10px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--md-outline-variant);
+  background: var(--md-surface-container-low);
+  color: var(--md-on-surface);
+  font-family: var(--font-body);
+  font-size: 12px;
+  outline: none;
+}
+
+.m3-input {
+  flex: 1;
+}
+
+.m3-input.custom-exe {
+  max-width: 110px;
+}
+
+.flex-1 {
+  flex: 1;
+  min-width: 0;
+}
+
+.hotkey-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.hk-controls {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.editor-rules {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  flex: 1;
+  min-height: 80px;
+  overflow-y: auto;
+}
+
+.rule-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 8px;
+  background: var(--md-surface-container);
+  border-radius: var(--radius-md);
+}
+
+.rule-name {
+  width: 96px;
+  font-size: 11.5px;
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.add-rule-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.dialog-footer {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.spacer {
+  flex: 1;
+}
+
+@keyframes popIn {
+  from {
+    opacity: 0;
+    transform: scale(0.94) translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
