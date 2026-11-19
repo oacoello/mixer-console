@@ -8,7 +8,7 @@ mod media;
 mod tray;
 
 use audio::{AudioCommand, AudioEngine};
-use config::{AppConfig, Preset};
+use config::{read_windows_accent_hex, read_windows_theme_is_light, AppConfig, Preset};
 use hotkeys::HotkeyManager;
 use media::{MediaCommand, MediaController, SpotifyMediaState};
 use serde::{Deserialize, Serialize};
@@ -33,6 +33,7 @@ enum IpcMessage {
     TogglePin,
     SetFade { ms: u64 },
     SetTheme { mode: String },
+    SetAccent { color: String },
     ApplyPreset { id: String },
     SetMasterVolume { volume: f32 },
     SetMasterMute { muted: bool },
@@ -61,6 +62,9 @@ struct UiState<'a> {
     always_on_top: bool,
     fade_duration_ms: u64,
     theme_mode: &'a str,
+    resolved_theme: &'a str,
+    accent_color: &'a str,
+    system_accent_hex: String,
     presets: &'a [Preset],
     active_preset_id: Option<&'a str>,
     conflicts: Vec<String>,
@@ -108,10 +112,25 @@ fn build_state_json(
         })
         .collect();
 
+    let resolved_theme = match config.theme_mode.as_str() {
+        "light" => "light",
+        "dark" => "dark",
+        _ => {
+            if read_windows_theme_is_light() {
+                "light"
+            } else {
+                "dark"
+            }
+        }
+    };
+
     let state = UiState {
         always_on_top: config.always_on_top,
         fade_duration_ms: config.fade_duration_ms,
         theme_mode: &config.theme_mode,
+        resolved_theme,
+        accent_color: &config.accent_color,
+        system_accent_hex: read_windows_accent_hex(),
         presets: &config.presets,
         active_preset_id,
         conflicts: hotkeys.get_conflicts(),
@@ -171,8 +190,8 @@ fn main() -> wry::Result<()> {
     let event_loop = EventLoop::new();
     let window = WindowBuilder::new()
         .with_title("Consola de Audio")
-        .with_inner_size(LogicalSize::new(470.0, 460.0))
-        .with_min_inner_size(LogicalSize::new(390.0, 320.0))
+        .with_inner_size(LogicalSize::new(380.0, 600.0))
+        .with_min_inner_size(LogicalSize::new(330.0, 460.0))
         .with_always_on_top(config.always_on_top)
         .with_window_icon(window_icon)
         .build(&event_loop)
@@ -263,11 +282,15 @@ fn main() -> wry::Result<()> {
                             let _ = config.save();
                         }
                         IpcMessage::SetTheme { mode } => {
-                            config.theme_mode = if mode == "light" {
-                                "light".to_string()
-                            } else {
-                                "dark".to_string()
+                            config.theme_mode = match mode.as_str() {
+                                "light" => "light".to_string(),
+                                "dark" => "dark".to_string(),
+                                _ => "system".to_string(),
                             };
+                            let _ = config.save();
+                        }
+                        IpcMessage::SetAccent { color } => {
+                            config.accent_color = color;
                             let _ = config.save();
                         }
                         IpcMessage::ApplyPreset { id } => {

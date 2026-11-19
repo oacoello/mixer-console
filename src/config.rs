@@ -73,8 +73,14 @@ pub struct PresetRule {
 pub struct Preset {
     pub id: String,
     pub name: String,
+    #[serde(default = "default_preset_icon")]
+    pub icon: String,
     pub hotkey: Option<HotkeySpec>,
     pub rules: Vec<PresetRule>,
+}
+
+fn default_preset_icon() -> String {
+    "sliders".to_string()
 }
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
@@ -84,6 +90,8 @@ pub struct AppConfig {
     pub fade_duration_ms: u64,
     #[serde(default = "default_theme_mode")]
     pub theme_mode: String,
+    #[serde(default = "default_accent_color")]
+    pub accent_color: String,
     pub presets: Vec<Preset>,
     /// Etiquetas personalizadas opcionales por ejecutable
     #[serde(default)]
@@ -91,7 +99,11 @@ pub struct AppConfig {
 }
 
 fn default_theme_mode() -> String {
-    "dark".to_string()
+    "system".to_string()
+}
+
+fn default_accent_color() -> String {
+    "system".to_string()
 }
 
 impl Default for AppConfig {
@@ -101,11 +113,13 @@ impl Default for AppConfig {
             minimize_to_tray_on_close: true,
             fade_duration_ms: 500,
             theme_mode: default_theme_mode(),
+            accent_color: default_accent_color(),
             custom_names: BTreeMap::new(),
             presets: vec![
                 Preset {
                     id: "preset-musica".to_string(),
                     name: "Música".to_string(),
+                    icon: "music".to_string(),
                     hotkey: Some(HotkeySpec::new(true, false, false, "F1")),
                     rules: vec![
                         PresetRule {
@@ -125,6 +139,7 @@ impl Default for AppConfig {
                 Preset {
                     id: "preset-estudio".to_string(),
                     name: "Estudio / Palabra".to_string(),
+                    icon: "book".to_string(),
                     hotkey: Some(HotkeySpec::new(true, false, false, "F2")),
                     rules: vec![
                         PresetRule {
@@ -144,6 +159,7 @@ impl Default for AppConfig {
                 Preset {
                     id: "preset-todo".to_string(),
                     name: "Todo al 100%".to_string(),
+                    icon: "sliders".to_string(),
                     hotkey: Some(HotkeySpec::new(true, false, false, "F3")),
                     rules: vec![
                         PresetRule {
@@ -205,4 +221,52 @@ pub fn available_hotkey_keys() -> Vec<&'static str> {
         "4", "5", "6", "7", "8", "9", "0", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K",
         "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z",
     ]
+}
+
+fn read_hkcu_dword(subkey: &str, value_name: &str) -> Option<u32> {
+    use std::ffi::OsStr;
+    use std::os::windows::ffi::OsStrExt;
+    use windows::core::PCWSTR;
+    use windows::Win32::System::Registry::{RegGetValueW, HKEY_CURRENT_USER, RRF_RT_REG_DWORD};
+
+    let sub_w: Vec<u16> = OsStr::new(subkey).encode_wide().chain(Some(0)).collect();
+    let val_w: Vec<u16> = OsStr::new(value_name).encode_wide().chain(Some(0)).collect();
+    let mut data: u32 = 0;
+    let mut size: u32 = std::mem::size_of::<u32>() as u32;
+
+    let status = unsafe {
+        RegGetValueW(
+            HKEY_CURRENT_USER,
+            PCWSTR(sub_w.as_ptr()),
+            PCWSTR(val_w.as_ptr()),
+            RRF_RT_REG_DWORD,
+            None,
+            Some(&mut data as *mut u32 as *mut _),
+            Some(&mut size),
+        )
+    };
+    if status.is_ok() {
+        Some(data)
+    } else {
+        None
+    }
+}
+
+pub fn read_windows_theme_is_light() -> bool {
+    read_hkcu_dword(
+        "Software\\Microsoft\\Windows\\CurrentVersion\\Themes\\Personalize",
+        "AppsUseLightTheme",
+    )
+    .map(|v| v != 0)
+    .unwrap_or(false)
+}
+
+pub fn read_windows_accent_hex() -> String {
+    if let Some(abgr) = read_hkcu_dword("Software\\Microsoft\\Windows\\DWM", "AccentColor") {
+        let r = abgr & 0xFF;
+        let g = (abgr >> 8) & 0xFF;
+        let b = (abgr >> 16) & 0xFF;
+        return format!("#{:02X}{:02X}{:02X}", r, g, b);
+    }
+    "#4A55A2".to_string()
 }

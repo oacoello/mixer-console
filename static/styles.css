@@ -1,9 +1,8 @@
 /* ==========================================================================
-   Material 3 Expressive — Consola de Audio Compacta
+   Material 3 Expressive — Mobile Console Layout
    ========================================================================== */
 :root {
-  --font-display: 'Plus Jakarta Sans', 'Segoe UI Variable', system-ui, -apple-system, sans-serif;
-  --font-body: 'Roboto Flex', 'Segoe UI Variable', system-ui, -apple-system, sans-serif;
+  --font-sans: 'Segoe UI Variable', 'Segoe UI', system-ui, -apple-system, sans-serif;
   --ease-expressive: cubic-bezier(0.2, 0.0, 0, 1.0);
   --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
 
@@ -11,70 +10,44 @@
   --radius-lg: 18px;
   --radius-md: 12px;
   --radius-pill: 9999px;
+
+  /* Dynamic accent defaults (overridden by Windows Accent or user swatch) */
+  --md-primary: #BAC3FF;
+  --md-on-primary: #1A256E;
+  --md-primary-container: #323D88;
+  --md-on-primary-container: #DDE1FF;
+  --md-secondary-container: #34374C;
+  --md-on-secondary-container: #E2E4F8;
 }
 
 body[data-mode="dark"] {
-  --md-surface: #121318;
-  --md-surface-container-low: #1A1B22;
-  --md-surface-container: #20222B;
-  --md-surface-container-high: #2A2C37;
-  --md-surface-container-highest: #343744;
-  --md-on-surface: #E5E6F0;
-  --md-on-surface-variant: #B8BAC9;
-  --md-outline: #8D90A1;
-  --md-outline-variant: #434656;
-
-  --md-primary: #BAC3FF;
-  --md-on-primary: #1B2770;
-  --md-primary-container: #333F8A;
-  --md-on-primary-container: #DDE1FF;
-
-  --md-secondary-container: #3B3D54;
-  --md-on-secondary-container: #E0E1F9;
-
-  --md-tertiary: #FFB1C8;
-  --md-on-tertiary: #5E1132;
-  --md-tertiary-container: #732A48;
-  --md-on-tertiary-container: #FFD9E3;
-
+  --md-surface: #111318;
+  --md-surface-container-low: #181A21;
+  --md-surface-container: #1F222B;
+  --md-surface-container-high: #282B36;
+  --md-surface-container-highest: #333744;
+  --md-on-surface: #F0F2FA;
+  --md-on-surface-variant: #B8BCCF;
+  --md-outline: #8D91A5;
+  --md-outline-variant: #3A3E4E;
   --md-error: #FFB4AB;
   --md-error-container: #93000A;
   --md-on-error-container: #FFDAD6;
-
-  --md-orb-1: rgba(186, 195, 255, 0.09);
-  --md-orb-2: rgba(255, 177, 200, 0.07);
 }
 
 body[data-mode="light"] {
-  --md-surface: #F7F7FC;
+  --md-surface: #F6F7FB;
   --md-surface-container-low: #FFFFFF;
-  --md-surface-container: #EFEFFA;
-  --md-surface-container-high: #E5E6F5;
-  --md-surface-container-highest: #DBDCEE;
-  --md-on-surface: #1A1B26;
-  --md-on-surface-variant: #4B4D61;
-  --md-outline: #76788C;
-  --md-outline-variant: #C9CBD9;
-
-  --md-primary: #4A55A2;
-  --md-on-primary: #FFFFFF;
-  --md-primary-container: #DDE1FF;
-  --md-on-primary-container: #141E61;
-
-  --md-secondary-container: #E2E1F6;
-  --md-on-secondary-container: #22233B;
-
-  --md-tertiary: #8C4A60;
-  --md-on-tertiary: #FFFFFF;
-  --md-tertiary-container: #FFD9E3;
-  --md-on-tertiary-container: #3B071D;
-
+  --md-surface-container: #ECEFF6;
+  --md-surface-container-high: #E2E6F0;
+  --md-surface-container-highest: #D7DCE8;
+  --md-on-surface: #161822;
+  --md-on-surface-variant: #4B4F63;
+  --md-outline: #73778C;
+  --md-outline-variant: #C9CEDB;
   --md-error: #BA1A1A;
   --md-error-container: #FFDAD6;
   --md-on-error-container: #410002;
-
-  --md-orb-1: rgba(74, 85, 162, 0.12);
-  --md-orb-2: rgba(140, 74, 96, 0.09);
 }
 
 * {
@@ -88,121 +61,88 @@ html, body {
   width: 100%;
   height: 100%;
   overflow: hidden;
-  font-family: var(--font-body);
+  font-family: var(--font-sans);
   background: var(--md-surface);
   color: var(--md-on-surface);
-  transition: background 0.35s var(--ease-expressive), color 0.35s var(--ease-expressive);
-}
-
-.ambient-bg {
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  z-index: 0;
-  overflow: hidden;
-}
-
-.orb {
-  position: absolute;
-  border-radius: 50%;
-  filter: blur(55px);
-}
-
-.orb-1 {
-  width: 240px;
-  height: 240px;
-  top: -80px;
-  left: -60px;
-  background: var(--md-orb-1);
-}
-
-.orb-2 {
-  width: 220px;
-  height: 220px;
-  bottom: -70px;
-  right: -50px;
-  background: var(--md-orb-2);
+  -webkit-font-smoothing: antialiased;
 }
 
 .app-shell {
   position: relative;
-  z-index: 1;
   display: flex;
   flex-direction: column;
   height: 100vh;
-  padding: 10px;
-  gap: 8px;
 }
 
-/* ==========================================================================
-   Top Bar
-   ========================================================================== */
-.top-bar {
+.views-container {
+  flex: 1;
+  min-height: 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.tab-view {
+  display: none;
+  flex-direction: column;
+  height: 100%;
+  padding: 12px 12px 8px 12px;
+  gap: 10px;
+}
+
+.tab-view.active {
+  display: flex;
+  animation: fadeSlide 0.22s var(--ease-expressive);
+}
+
+@keyframes fadeSlide {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.view-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 8px;
-  padding: 6px 10px;
-  background: var(--md-surface-container);
-  border-radius: var(--radius-pill);
-  border: 1px solid var(--md-outline-variant);
+  min-height: 30px;
 }
 
-.brand {
-  display: flex;
-  align-items: center;
-  gap: 7px;
-  min-width: 0;
-}
-
-.brand-dot {
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  background: var(--md-primary);
-  box-shadow: 0 0 10px var(--md-primary);
-  flex-shrink: 0;
-}
-
-.brand-title {
-  font-family: var(--font-display);
+.view-header h1 {
+  font-size: 18px;
   font-weight: 700;
-  font-size: 14px;
-  letter-spacing: -0.01em;
+  letter-spacing: -0.02em;
 }
 
-.status-pill {
-  font-size: 10.5px;
-  font-weight: 600;
-  padding: 2px 8px;
+.toast-banner {
+  position: fixed;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 40;
+  padding: 5px 14px;
   border-radius: var(--radius-pill);
-  background: var(--md-tertiary-container);
-  color: var(--md-on-tertiary-container);
-  white-space: nowrap;
-  animation: popIn 0.25s var(--ease-spring);
-}
-
-.top-actions {
-  display: flex;
-  align-items: center;
-  gap: 5px;
-  flex-shrink: 0;
+  background: var(--md-primary);
+  color: var(--md-on-primary);
+  font-size: 12px;
+  font-weight: 600;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.32);
+  pointer-events: none;
 }
 
 /* ==========================================================================
-   Material 3 Expressive Buttons & Chips (Shape Morphing!)
+   Buttons, Chips, Selects & Switch
    ========================================================================== */
 button {
-  font-family: var(--font-body);
+  font-family: var(--font-sans);
   border: none;
   outline: none;
   cursor: pointer;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 5px;
+  gap: 6px;
   transition:
-    transform 0.22s var(--ease-spring),
+    transform 0.2s var(--ease-spring),
     border-radius 0.2s var(--ease-expressive),
     background-color 0.2s var(--ease-expressive),
     color 0.2s var(--ease-expressive);
@@ -213,39 +153,58 @@ button:active {
   border-radius: var(--radius-md) !important;
 }
 
-.icon-sm {
-  width: 15px;
-  height: 15px;
-  fill: currentColor;
-}
+.icon-xs { width: 14px; height: 14px; fill: currentColor; flex-shrink: 0; }
+.icon-sm { width: 16px; height: 16px; fill: currentColor; flex-shrink: 0; }
+.icon-md { width: 22px; height: 22px; fill: currentColor; flex-shrink: 0; }
+.icon-lg { width: 28px; height: 28px; fill: currentColor; flex-shrink: 0; }
 
-.icon-xs {
-  width: 13px;
-  height: 13px;
-  fill: currentColor;
-}
-
-.m3-pill-select {
-  height: 28px;
-  padding: 0 8px;
+.m3-filled-btn {
+  height: 34px;
+  padding: 0 14px;
   border-radius: var(--radius-pill);
-  border: 1px solid var(--md-outline-variant);
-  background: var(--md-surface-container-low);
-  color: var(--md-on-surface);
-  font-family: var(--font-body);
-  font-size: 11.5px;
+  background: var(--md-primary);
+  color: var(--md-on-primary);
+  font-size: 12.5px;
   font-weight: 600;
-  outline: none;
-  cursor: pointer;
+}
+
+.m3-tonal-btn {
+  height: 34px;
+  padding: 0 14px;
+  border-radius: var(--radius-pill);
+  background: var(--md-secondary-container);
+  color: var(--md-on-secondary-container);
+  font-size: 12.5px;
+  font-weight: 600;
+}
+
+.m3-tonal-btn.compact {
+  height: 28px;
+  padding: 0 10px;
+  font-size: 11.5px;
+}
+
+.m3-text-btn {
+  height: 32px;
+  padding: 0 12px;
+  border-radius: var(--radius-pill);
+  background: transparent;
+  color: var(--md-primary);
+  font-size: 12.5px;
+  font-weight: 600;
+}
+
+.m3-text-btn.danger {
+  color: var(--md-error);
 }
 
 .m3-chip-btn {
   height: 28px;
-  padding: 0 10px;
+  padding: 0 11px;
   border-radius: var(--radius-pill);
   background: var(--md-surface-container-high);
   color: var(--md-on-surface-variant);
-  font-size: 11.5px;
+  font-size: 12px;
   font-weight: 600;
 }
 
@@ -255,200 +214,102 @@ button:active {
   font-size: 11px;
 }
 
-.m3-chip-btn.outlined {
-  background: transparent;
-  border: 1px solid var(--md-outline-variant);
-}
-
 .m3-chip-btn.active {
   background: var(--md-primary-container);
   color: var(--md-on-primary-container);
-  border-color: transparent;
   border-radius: 10px;
 }
 
-.m3-tonal-btn {
-  height: 28px;
-  padding: 0 11px;
+.m3-pill-select {
+  height: 30px;
+  padding: 0 10px;
   border-radius: var(--radius-pill);
-  background: var(--md-secondary-container);
-  color: var(--md-on-secondary-container);
+  border: 1px solid var(--md-outline-variant);
+  background: var(--md-surface-container);
+  color: var(--md-on-surface);
+  font-family: var(--font-sans);
+  font-size: 12px;
+  font-weight: 600;
+  outline: none;
+  cursor: pointer;
+}
+
+.m3-status-chip {
   font-size: 11.5px;
   font-weight: 600;
-}
-
-.m3-tonal-btn.compact {
-  height: 26px;
-  padding: 0 10px;
-  font-size: 11px;
-}
-
-.m3-filled-btn {
-  height: 30px;
-  padding: 0 14px;
+  padding: 4px 10px;
   border-radius: var(--radius-pill);
-  background: var(--md-primary);
-  color: var(--md-on-primary);
-  font-size: 12px;
-  font-weight: 600;
-}
-
-.m3-text-btn {
-  height: 30px;
-  padding: 0 10px;
-  border-radius: var(--radius-pill);
-  background: transparent;
-  color: var(--md-primary);
-  font-size: 12px;
-  font-weight: 600;
-}
-
-.m3-text-btn.danger {
-  color: var(--md-error);
-}
-
-.m3-icon-btn {
-  width: 28px;
-  height: 28px;
-  border-radius: 50%;
   background: var(--md-surface-container-high);
   color: var(--md-on-surface-variant);
 }
 
-.m3-icon-btn.sm {
-  width: 26px;
-  height: 26px;
-  background: transparent;
-}
-
-.m3-icon-btn.sm:hover {
+.m3-switch {
+  width: 48px;
+  height: 28px;
+  border-radius: var(--radius-pill);
   background: var(--md-surface-container-highest);
-  color: var(--md-on-surface);
+  border: 2px solid var(--md-outline);
+  padding: 2px;
+  justify-content: flex-start;
+  flex-shrink: 0;
 }
 
-.m3-tonal-icon-btn {
-  width: 30px;
-  height: 30px;
+.m3-switch-thumb {
+  width: 18px;
+  height: 18px;
   border-radius: 50%;
+  background: var(--md-outline);
+  transition: transform 0.22s var(--ease-spring), background-color 0.2s;
+}
+
+.m3-switch.on {
   background: var(--md-primary);
-  color: var(--md-on-primary);
-}
-
-.m3-icon-btn.danger:hover {
-  background: var(--md-error-container);
-  color: var(--md-on-error-container);
-}
-
-/* ==========================================================================
-   Spotify Now Playing Footer
-   ========================================================================== */
-.spotify-bar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 8px;
-  padding: 6px 10px;
-  background: var(--md-surface-container);
-  border: 1px solid var(--md-outline-variant);
-  border-radius: var(--radius-lg);
-}
-
-.spotify-info {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  min-width: 0;
-  flex: 1;
-}
-
-.spotify-badge {
-  width: 26px;
-  height: 26px;
-  border-radius: 50%;
-  background: var(--md-secondary-container);
-  color: var(--md-primary);
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-}
-
-.spotify-text {
-  display: flex;
-  flex-direction: column;
-  min-width: 0;
-}
-
-.sp-title {
-  font-size: 11.5px;
-  font-weight: 600;
-  color: var(--md-on-surface);
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.sp-artist {
-  font-size: 10.5px;
-  color: var(--md-on-surface-variant);
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.spotify-controls {
-  display: flex;
-  align-items: center;
-  gap: 4px;
-  flex-shrink: 0;
-}
-
-/* ==========================================================================
-   Presets Strip
-   ========================================================================== */
-.presets-section {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-}
-
-.presets-list {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
-}
-
-.preset-group {
-  display: inline-flex;
-  align-items: center;
-  background: var(--md-surface-container);
-  border: 1px solid var(--md-outline-variant);
-  border-radius: var(--radius-pill);
-  padding: 2px 3px 2px 3px;
-  transition: all 0.25s var(--ease-expressive);
-}
-
-.preset-group.active {
-  background: var(--md-primary-container);
   border-color: var(--md-primary);
-  border-radius: 14px;
 }
 
-.preset-trigger {
-  height: 24px;
-  padding: 0 9px;
+.m3-switch.on .m3-switch-thumb {
+  background: var(--md-on-primary);
+  transform: translateX(20px);
+  width: 20px;
+  height: 20px;
+}
+
+.flex-1 { flex: 1; min-width: 0; }
+
+/* ==========================================================================
+   TAB 1: Mixer (Quick Presets + Channels)
+   ========================================================================== */
+.quick-presets-strip {
+  display: flex;
+  gap: 6px;
+  overflow-x: auto;
+  padding-bottom: 2px;
+  flex-shrink: 0;
+}
+
+.quick-presets-strip::-webkit-scrollbar { height: 0; }
+
+.quick-preset-chip {
+  height: 32px;
+  padding: 0 11px;
   border-radius: var(--radius-pill);
-  background: transparent;
+  background: var(--md-surface-container);
+  border: 1px solid var(--md-outline-variant);
   color: var(--md-on-surface);
-  font-size: 11.5px;
+  font-size: 12px;
   font-weight: 600;
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 
-.preset-group.active .preset-trigger {
+.quick-preset-chip.active {
+  background: var(--md-primary-container);
   color: var(--md-on-primary-container);
+  border-color: var(--md-primary);
+  border-radius: 12px;
 }
 
-.preset-kbd {
+.quick-preset-kbd {
   font-size: 10px;
   font-weight: 600;
   padding: 1px 6px;
@@ -457,46 +318,21 @@ button:active {
   color: var(--md-on-surface-variant);
 }
 
-.preset-group.active .preset-kbd {
+.quick-preset-chip.active .quick-preset-kbd {
   background: var(--md-primary);
   color: var(--md-on-primary);
 }
 
-.preset-edit-btn {
-  width: 22px;
-  height: 22px;
-  border-radius: 50%;
-  background: transparent;
-  color: var(--md-on-surface-variant);
-  font-size: 11px;
-}
-
-.preset-edit-btn:hover {
-  background: var(--md-surface-container-highest);
-  color: var(--md-on-surface);
-}
-
-.hotkey-warning {
-  font-size: 11px;
-  color: var(--md-error);
-  padding: 2px 6px;
-}
-
-/* ==========================================================================
-   Mixer Channels (Compact Material 3 Expressive Cards)
-   ========================================================================== */
 .channels-list {
   flex: 1;
   overflow-y: auto;
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 8px;
   padding-right: 2px;
 }
 
-.channels-list::-webkit-scrollbar {
-  width: 5px;
-}
+.channels-list::-webkit-scrollbar { width: 4px; }
 .channels-list::-webkit-scrollbar-thumb {
   background: var(--md-outline-variant);
   border-radius: 99px;
@@ -506,11 +342,10 @@ button:active {
   background: var(--md-surface-container-low);
   border: 1px solid var(--md-outline-variant);
   border-radius: var(--radius-lg);
-  padding: 8px 11px 7px 11px;
+  padding: 10px 12px 8px 12px;
   display: flex;
   flex-direction: column;
-  gap: 6px;
-  transition: border-color 0.2s var(--ease-expressive), background 0.2s var(--ease-expressive);
+  gap: 7px;
 }
 
 .channel-card.master {
@@ -527,19 +362,19 @@ button:active {
   border-color: var(--md-primary);
 }
 
-.channel-main {
+.channel-top {
   display: flex;
   align-items: center;
-  gap: 10px;
+  justify-content: space-between;
+  gap: 8px;
 }
 
 .channel-identity {
   display: flex;
   align-items: center;
-  gap: 7px;
-  width: 120px;
-  flex-shrink: 0;
+  gap: 8px;
   min-width: 0;
+  flex: 1;
 }
 
 .app-icon {
@@ -559,7 +394,6 @@ button:active {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  font-size: 12px;
   flex-shrink: 0;
 }
 
@@ -569,17 +403,50 @@ button:active {
 }
 
 .channel-name {
-  font-size: 12.5px;
+  font-size: 13px;
   font-weight: 600;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
+.channel-right {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.channel-pct {
+  width: 36px;
+  text-align: right;
+  font-size: 12px;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  color: var(--md-on-surface-variant);
+}
+
+.mute-btn {
+  height: 26px;
+  min-width: 62px;
+  padding: 0 10px;
+  border-radius: var(--radius-pill);
+  background: var(--md-surface-container-high);
+  color: var(--md-on-surface);
+  font-size: 11.5px;
+  font-weight: 600;
+}
+
+.mute-btn.muted {
+  background: var(--md-error-container);
+  color: var(--md-on-error-container);
+  border-radius: 10px;
+}
+
 /* Material 3 Expressive Thick Slider */
 .m3-slider-wrap {
   position: relative;
-  flex: 1;
+  width: 100%;
   height: 24px;
   display: flex;
   align-items: center;
@@ -590,21 +457,20 @@ button:active {
 .m3-slider-track {
   position: relative;
   width: 100%;
-  height: 12px;
+  height: 13px;
   border-radius: var(--radius-pill);
   background: var(--md-surface-container-highest);
   overflow: hidden;
 }
 
 .channel-card.master .m3-slider-track {
-  background: rgba(0, 0, 0, 0.22);
+  background: rgba(0, 0, 0, 0.20);
 }
 
 .m3-slider-fill {
   height: 100%;
   border-radius: var(--radius-pill);
   background: var(--md-primary);
-  transition: width 0.05s linear;
 }
 
 .channel-card.muted .m3-slider-fill {
@@ -621,7 +487,7 @@ button:active {
   transform: translate(-50%, -50%);
   box-shadow: 0 0 0 2px var(--md-surface-container-low);
   pointer-events: none;
-  transition: width 0.15s var(--ease-spring), height 0.15s var(--ease-spring);
+  transition: width 0.14s var(--ease-spring), height 0.14s var(--ease-spring);
 }
 
 .channel-card.master .m3-slider-thumb {
@@ -634,35 +500,7 @@ button:active {
   height: 26px;
 }
 
-.channel-pct {
-  width: 34px;
-  text-align: right;
-  font-size: 11.5px;
-  font-weight: 600;
-  font-variant-numeric: tabular-nums;
-  color: var(--md-on-surface-variant);
-  flex-shrink: 0;
-}
-
-.mute-btn {
-  height: 26px;
-  min-width: 56px;
-  padding: 0 9px;
-  border-radius: var(--radius-pill);
-  background: var(--md-surface-container-high);
-  color: var(--md-on-surface-variant);
-  font-size: 11px;
-  font-weight: 600;
-  flex-shrink: 0;
-}
-
-.mute-btn.muted {
-  background: var(--md-error-container);
-  color: var(--md-on-error-container);
-  border-radius: 10px;
-}
-
-/* Real-time VU Meter Bar */
+/* VU Meter */
 .vu-track {
   width: 100%;
   height: 4px;
@@ -679,21 +517,368 @@ button:active {
   height: 100%;
   width: 0%;
   border-radius: var(--radius-pill);
-  background: linear-gradient(90deg, #4ade80 0%, #facc15 72%, #ef4444 95%);
+  background: linear-gradient(90deg, #22c55e 0%, #eab308 72%, #ef4444 95%);
   transition: width 0.04s linear;
 }
 
 .empty-state {
   padding: 28px 16px;
   text-align: center;
-  font-size: 12.5px;
+  font-size: 13px;
   color: var(--md-on-surface-variant);
   background: var(--md-surface-container);
   border-radius: var(--radius-lg);
 }
 
 /* ==========================================================================
-   Modal Dialog (Material 3 Expressive)
+   TAB 2: Presets Management
+   ========================================================================== */
+.preset-create-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.presets-manage-list {
+  flex: 1;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.preset-manage-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 10px 12px;
+  border-radius: var(--radius-lg);
+  background: var(--md-surface-container-low);
+  border: 1px solid var(--md-outline-variant);
+}
+
+.preset-manage-card.active {
+  border-color: var(--md-primary);
+  background: var(--md-surface-container);
+}
+
+.preset-manage-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+  flex: 1;
+  cursor: pointer;
+}
+
+.preset-icon-box {
+  width: 34px;
+  height: 34px;
+  border-radius: 12px;
+  background: var(--md-secondary-container);
+  color: var(--md-on-secondary-container);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.preset-manage-card.active .preset-icon-box {
+  background: var(--md-primary);
+  color: var(--md-on-primary);
+}
+
+.preset-manage-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.preset-manage-name {
+  font-size: 13.5px;
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.preset-manage-sub {
+  font-size: 11px;
+  color: var(--md-on-surface-variant);
+}
+
+.preset-manage-actions {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  flex-shrink: 0;
+}
+
+.icon-action-btn {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: var(--md-surface-container-high);
+  color: var(--md-on-surface-variant);
+}
+
+.icon-action-btn:hover {
+  color: var(--md-on-surface);
+}
+
+.icon-action-btn.danger:hover {
+  background: var(--md-error-container);
+  color: var(--md-on-error-container);
+}
+
+.hotkey-warning {
+  font-size: 11.5px;
+  color: var(--md-error);
+  padding: 4px 8px;
+  border-radius: var(--radius-md);
+  background: var(--md-error-container);
+  color: var(--md-on-error-container);
+}
+
+/* ==========================================================================
+   TAB 3: Música (Spotify)
+   ========================================================================== */
+.music-stage {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.music-card {
+  width: 100%;
+  padding: 26px 20px;
+  border-radius: var(--radius-xl);
+  background: var(--md-surface-container);
+  border: 1px solid var(--md-outline-variant);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 18px;
+}
+
+.music-badge-lg {
+  width: 54px;
+  height: 54px;
+  border-radius: 18px;
+  background: var(--md-primary-container);
+  color: var(--md-on-primary-container);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.music-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  width: 100%;
+}
+
+.music-title {
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.3;
+  color: var(--md-on-surface);
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.music-artist {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--md-on-surface-variant);
+}
+
+.music-controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+}
+
+.music-ctrl-btn {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--md-surface-container-high);
+  color: var(--md-on-surface);
+}
+
+.music-play-btn {
+  width: 60px;
+  height: 60px;
+  border-radius: 22px;
+  background: var(--md-primary);
+  color: var(--md-on-primary);
+}
+
+/* ==========================================================================
+   TAB 4: Configuraciones
+   ========================================================================== */
+.settings-list {
+  flex: 1;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.setting-card {
+  padding: 12px 14px;
+  border-radius: var(--radius-lg);
+  background: var(--md-surface-container-low);
+  border: 1px solid var(--md-outline-variant);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.setting-card.horizontal {
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.setting-title {
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.setting-desc {
+  font-size: 11.5px;
+  color: var(--md-on-surface-variant);
+  margin-top: 2px;
+}
+
+.segmented-row {
+  display: flex;
+  gap: 6px;
+}
+
+.m3-seg-btn {
+  flex: 1;
+  height: 32px;
+  border-radius: var(--radius-pill);
+  background: var(--md-surface-container-high);
+  color: var(--md-on-surface-variant);
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.m3-seg-btn.active {
+  background: var(--md-primary);
+  color: var(--md-on-primary);
+  border-radius: 12px;
+}
+
+.accent-swatches {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.swatch-btn {
+  height: 30px;
+  padding: 0 10px;
+  border-radius: var(--radius-pill);
+  background: var(--md-surface-container-high);
+  color: var(--md-on-surface);
+  font-size: 11.5px;
+  font-weight: 600;
+  border: 2px solid transparent;
+}
+
+.swatch-btn.active {
+  border-color: var(--md-primary);
+  background: var(--md-primary-container);
+  color: var(--md-on-primary-container);
+}
+
+.swatch-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.setting-note {
+  font-size: 11.5px;
+  line-height: 1.45;
+  color: var(--md-on-surface-variant);
+  padding: 2px 4px;
+}
+
+/* ==========================================================================
+   Material 3 Bottom Navigation Bar
+   ========================================================================== */
+.m3-navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  height: 64px;
+  padding: 6px 6px 8px 6px;
+  background: var(--md-surface-container);
+  border-top: 1px solid var(--md-outline-variant);
+  flex-shrink: 0;
+}
+
+.nav-item {
+  flex: 1;
+  flex-direction: column;
+  gap: 3px;
+  background: transparent;
+  color: var(--md-on-surface-variant);
+  padding: 2px 0;
+}
+
+.nav-item:active {
+  transform: none;
+  border-radius: 0 !important;
+}
+
+.nav-pill {
+  width: 54px;
+  height: 28px;
+  border-radius: var(--radius-pill);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.2s var(--ease-expressive), transform 0.2s var(--ease-spring);
+}
+
+.nav-icon {
+  width: 19px;
+  height: 19px;
+  fill: currentColor;
+}
+
+.nav-label {
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.nav-item.active {
+  color: var(--md-on-surface);
+}
+
+.nav-item.active .nav-pill {
+  background: var(--md-primary-container);
+  color: var(--md-on-primary-container);
+}
+
+/* ==========================================================================
+   Preset Editor Modal (Tall)
    ========================================================================== */
 .hidden {
   display: none !important;
@@ -703,17 +888,17 @@ button:active {
   position: fixed;
   inset: 0;
   z-index: 50;
-  background: rgba(0, 0, 0, 0.55);
+  background: rgba(0, 0, 0, 0.58);
   backdrop-filter: blur(6px);
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 12px;
+  padding: 10px;
 }
 
-.m3-dialog {
+.m3-dialog.tall {
   width: 100%;
-  max-height: 100%;
+  height: 100%;
   background: var(--md-surface-container-high);
   border: 1px solid var(--md-outline-variant);
   border-radius: var(--radius-xl);
@@ -721,15 +906,6 @@ button:active {
   display: flex;
   flex-direction: column;
   gap: 10px;
-  animation: popIn 0.25s var(--ease-spring);
-}
-
-.m3-dialog.tall {
-  height: 100%;
-}
-
-.m3-dialog.compact-dialog {
-  height: auto;
 }
 
 .dialog-header {
@@ -739,62 +915,28 @@ button:active {
 }
 
 .dialog-header h2 {
-  font-family: var(--font-display);
-  font-size: 15px;
+  font-size: 16px;
   font-weight: 700;
 }
 
 .dialog-body {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 9px;
   flex: 1;
   min-height: 0;
-  overflow-y: auto;
-}
-
-.setting-row {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 10px;
-  padding: 10px 12px;
-  border-radius: var(--radius-md);
-  background: var(--md-surface-container);
-}
-
-.setting-info {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-}
-
-.setting-title {
-  font-size: 12.5px;
-  font-weight: 600;
-}
-
-.setting-desc {
-  font-size: 11px;
-  color: var(--md-on-surface-variant);
-}
-
-.segmented-group {
-  display: flex;
-  gap: 4px;
-}
-
-.setting-note {
-  font-size: 11px;
-  line-height: 1.45;
-  color: var(--md-on-surface-variant);
-  padding: 4px 2px;
 }
 
 .field-group {
   display: flex;
   align-items: center;
   gap: 8px;
+}
+
+.field-col {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
 }
 
 .field-label {
@@ -804,28 +946,39 @@ button:active {
 }
 
 .m3-input, .m3-select {
-  height: 30px;
+  height: 32px;
   padding: 0 10px;
   border-radius: var(--radius-md);
   border: 1px solid var(--md-outline-variant);
   background: var(--md-surface-container-low);
   color: var(--md-on-surface);
-  font-family: var(--font-body);
-  font-size: 12px;
+  font-family: var(--font-sans);
+  font-size: 12.5px;
   outline: none;
 }
 
-.m3-input {
-  flex: 1;
+.m3-input { flex: 1; }
+.m3-input.custom-exe { max-width: 96px; }
+
+.icon-picker {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
 }
 
-.m3-input.custom-exe {
-  max-width: 110px;
+.icon-pick-btn {
+  width: 34px;
+  height: 34px;
+  border-radius: 12px;
+  background: var(--md-surface-container);
+  color: var(--md-on-surface-variant);
+  border: 1px solid var(--md-outline-variant);
 }
 
-.flex-1 {
-  flex: 1;
-  min-width: 0;
+.icon-pick-btn.active {
+  background: var(--md-primary-container);
+  color: var(--md-on-primary-container);
+  border-color: var(--md-primary);
 }
 
 .hotkey-row {
@@ -844,9 +997,9 @@ button:active {
 .editor-rules {
   display: flex;
   flex-direction: column;
-  gap: 5px;
+  gap: 6px;
   flex: 1;
-  min-height: 80px;
+  min-height: 90px;
   overflow-y: auto;
 }
 
@@ -854,14 +1007,14 @@ button:active {
   display: flex;
   align-items: center;
   gap: 8px;
-  padding: 4px 8px;
+  padding: 5px 8px;
   background: var(--md-surface-container);
   border-radius: var(--radius-md);
 }
 
 .rule-name {
-  width: 96px;
-  font-size: 11.5px;
+  width: 88px;
+  font-size: 12px;
   font-weight: 600;
   white-space: nowrap;
   overflow: hidden;
@@ -880,17 +1033,4 @@ button:active {
   gap: 6px;
 }
 
-.spacer {
-  flex: 1;
-}
-
-@keyframes popIn {
-  from {
-    opacity: 0;
-    transform: scale(0.94) translateY(6px);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1) translateY(0);
-  }
-}
+.spacer { flex: 1; }
