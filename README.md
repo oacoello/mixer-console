@@ -1,22 +1,18 @@
-# Consola de Audio (Production Mixer)
+# My mixer
+<img width="1167" height="692" alt="image" src="https://github.com/user-attachments/assets/ffbbd3d2-61dd-430e-acf3-d4a711b1827e" />
 
-Mezclador de volúmenes por aplicación en tiempo real para Windows, escrito en **Rust** (`tao` + `wry` + Windows Core Audio WASAPI + SMTC) con interfaz **Material Design 3 Expressive**.
 
-## Características
+Real-time per-application volume mixer for Windows, written in **Rust** with a **Material Design 3 Expressive** interface.
 
-- **Control por aplicación y Master:** Sube, baja y silencia (mute) a nivel de sistema el volumen de cada aplicación abierta con su ícono real.
-- **Vúmetros en tiempo real:** Visualización instantánea del nivel de audio de cada canal.
-- **Presets con atajos globales:** Cambia de escena en cualquier momento (incluso en segundo plano) con atajos como `Ctrl+F1`, `Ctrl+F2`, `Ctrl+F3`, totalmente configurables.
-- **Transición suave (Fade):** Dropdown configurable (`0 ms` a `2000 ms`) para transiciones limpias en producción en vivo.
-- **Siempre visible (Anclar):** Mantén la consola fijada encima de otras ventanas.
-- **Control de Spotify integrado:** Barra inferior con canción y artista actual + controles de Anterior, Reproducir/Pausar y Siguiente.
-- **Bandeja del sistema (System Tray):** Al cerrar la ventana se oculta a la bandeja para evitar cierres accidentales; se cierra por completo desde el menú de la bandeja.
-- **Tema Oscuro y Claro:** Configurable desde el modal de Configuración.
+## Features
 
-## Compilación desde código fuente
+- **Per-application and Master control:** Turn volume up, down, and mute.
+- **Real-time VU meters:** Instant audio level visualization for each channel.
+- **Integrated Spotify controls:** Bottom bar displaying the current song and artist + Previous, Play/Pause, and Next controls.
+- <img width="479" height="746" alt="image" src="https://github.com/user-attachments/assets/3ded0089-7304-4289-9dfc-d464311d702d" />
 
-```powershell
-cargo build --release
-```
-
-El binario se genera en `target/release/production-mixer.exe` (junto con `WebView2Loader.dll` si compilas con toolchain GNU).
+- **Presets with global shortcuts:** Switch scenes at any time (even in the background) using fully configurable shortcuts like `Ctrl+F1`, `Ctrl+F2`, `Ctrl+F3`.
+- **Smooth transition (Fade):** Configurable dropdown (`0 ms` to `2000 ms`) for clean transitions in live production.
+- <img width="449" height="639" alt="image" src="https://github.com/user-attachments/assets/d0ed7cc3-62d0-4937-8745-cbff30950671" />
+- Support for Spanish, English, French, Portuguese, Simplified Mandarin, Russian, and German. 
+<img width="168" height="292" alt="image" src="https://github.com/user-attachments/assets/4e37e4b4-c737-464e-8916-1d6e6111dc40" />
