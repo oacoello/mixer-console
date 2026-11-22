@@ -6,6 +6,173 @@
     'N','O','P','Q','R','S','T','U','V','W','X','Y','Z'
   ];
 
+  const I18N = {
+    es: {
+      nav_mixer: 'Mixer', nav_presets: 'Presets', nav_music: 'Música', nav_settings: 'Ajustes',
+      presets_title: 'Presets', music_title: 'Música', settings_title: 'Configuraciones',
+      from_current: 'Desde estado actual', from_scratch: 'Desde cero',
+      pin_title: 'Anclar ventana encima', pin_desc: 'Mantiene la app visible sobre otras ventanas',
+      fade_title: 'Transición de presets', fade_desc: 'Duración del fade al cambiar de escena',
+      lang_title: 'Idioma', lang_desc: 'Idioma de la interfaz',
+      tray_note: 'Al cerrar la ventana, la app se oculta en la bandeja del sistema. Usa clic derecho en la bandeja → Salir para cerrarla por completo.',
+      capture_current: 'Capturar actuales', name_label: 'Nombre', icon_label: 'Ícono',
+      hotkey_btn: 'Atajo', delete_btn: 'Eliminar', cancel_btn: 'Cancelar', save_btn: 'Guardar',
+      mute: 'Mute', silence: 'Silenciar', on: 'On', no_audio: 'No hay aplicaciones reproduciendo audio en este momento.',
+      no_playback: 'Sin reproducción', open_spotify: 'Abre Spotify para controlar la música',
+      playing: 'Reproduciendo', paused: 'En pausa', disconnected: 'Desconectado',
+      new_preset: 'Nuevo Preset', edit_preset: 'Editar Preset', current_scene: 'Escena actual',
+      no_hotkey: 'Sin atajo', rule_1: 'regla', rule_n: 'reglas',
+      add_app: '+ Agregar app...', system_label: 'Sistema', master_sys: 'Master (Sistema)',
+      hotkey_used: 'Atajo en uso por otra app: ', name_ph: 'Ej. Música, Estudio...'
+    },
+    en: {
+      nav_mixer: 'Mixer', nav_presets: 'Presets', nav_music: 'Music', nav_settings: 'Settings',
+      presets_title: 'Presets', music_title: 'Music', settings_title: 'Settings',
+      from_current: 'From current state', from_scratch: 'From scratch',
+      pin_title: 'Always on top', pin_desc: 'Keep the window above other apps',
+      fade_title: 'Preset transition', fade_desc: 'Fade duration when switching scenes',
+      lang_title: 'Language', lang_desc: 'Interface language',
+      tray_note: 'Closing the window minimizes it to the system tray. Right-click the tray icon → Quit to exit completely.',
+      capture_current: 'Capture current', name_label: 'Name', icon_label: 'Icon',
+      hotkey_btn: 'Hotkey', delete_btn: 'Delete', cancel_btn: 'Cancel', save_btn: 'Save',
+      mute: 'Muted', silence: 'Mute', on: 'On', no_audio: 'No applications playing audio right now.',
+      no_playback: 'Not playing', open_spotify: 'Open Spotify to control playback',
+      playing: 'Playing', paused: 'Paused', disconnected: 'Disconnected',
+      new_preset: 'New Preset', edit_preset: 'Edit Preset', current_scene: 'Current scene',
+      no_hotkey: 'No hotkey', rule_1: 'rule', rule_n: 'rules',
+      add_app: '+ Add app...', system_label: 'System', master_sys: 'Master (System)',
+      hotkey_used: 'Hotkey already in use: ', name_ph: 'E.g. Music, Study...'
+    },
+    fr: {
+      nav_mixer: 'Mixeur', nav_presets: 'Préréglages', nav_music: 'Musique', nav_settings: 'Paramètres',
+      presets_title: 'Préréglages', music_title: 'Musique', settings_title: 'Paramètres',
+      from_current: 'État actuel', from_scratch: 'À partir de zéro',
+      pin_title: 'Toujours au-dessus', pin_desc: 'Garde la fenêtre au-dessus des autres',
+      fade_title: 'Transition', fade_desc: 'Durée du fondu entre scènes',
+      lang_title: 'Langue', lang_desc: 'Langue de l’interface',
+      tray_note: 'Fermer la fenêtre la réduit dans la zone de notification. Clic droit → Quitter pour fermer.',
+      capture_current: 'Capturer', name_label: 'Nom', icon_label: 'Icône',
+      hotkey_btn: 'Raccourci', delete_btn: 'Supprimer', cancel_btn: 'Annuler', save_btn: 'Enregistrer',
+      mute: 'Muet', silence: 'Muet', on: 'On', no_audio: 'Aucune application ne lit d’audio actuellement.',
+      no_playback: 'Aucune lecture', open_spotify: 'Ouvrez Spotify pour contrôler la musique',
+      playing: 'Lecture', paused: 'En pause', disconnected: 'Déconnecté',
+      new_preset: 'Nouveau préréglage', edit_preset: 'Modifier', current_scene: 'Scène actuelle',
+      no_hotkey: 'Aucun raccourci', rule_1: 'règle', rule_n: 'règles',
+      add_app: '+ Ajouter app...', system_label: 'Système', master_sys: 'Master (Système)',
+      hotkey_used: 'Raccourci déjà utilisé : ', name_ph: 'Ex. Musique, Étude...'
+    },
+    de: {
+      nav_mixer: 'Mixer', nav_presets: 'Presets', nav_music: 'Musik', nav_settings: 'Einstellungen',
+      presets_title: 'Presets', music_title: 'Musik', settings_title: 'Einstellungen',
+      from_current: 'Aus aktuellem Stand', from_scratch: 'Von Grund auf',
+      pin_title: 'Immer im Vordergrund', pin_desc: 'Hält das Fenster über anderen Apps',
+      fade_title: 'Übergang', fade_desc: 'Überblenddauer beim Wechsel',
+      lang_title: 'Sprache', lang_desc: 'Oberflächensprache',
+      tray_note: 'Beim Schließen wird die App ins Infofeld minimiert. Rechtsklick → Beenden zum Schließen.',
+      capture_current: 'Aktuelle erfassen', name_label: 'Name', icon_label: 'Symbol',
+      hotkey_btn: 'Tastenkürzel', delete_btn: 'Löschen', cancel_btn: 'Abbrechen', save_btn: 'Speichern',
+      mute: 'Stumm', silence: 'Stumm', on: 'An', no_audio: 'Derzeit gibt keine App Audio wieder.',
+      no_playback: 'Keine Wiedergabe', open_spotify: 'Spotify öffnen zur Steuerung',
+      playing: 'Wiedergabe', paused: 'Pausiert', disconnected: 'Getrennt',
+      new_preset: 'Neues Preset', edit_preset: 'Preset bearbeiten', current_scene: 'Aktuelle Szene',
+      no_hotkey: 'Kein Kürzel', rule_1: 'Regel', rule_n: 'Regeln',
+      add_app: '+ App hinzufügen...', system_label: 'System', master_sys: 'Master (System)',
+      hotkey_used: 'Kürzel bereits belegt: ', name_ph: 'Z. B. Musik, Studio...'
+    },
+    ja: {
+      nav_mixer: 'ミキサー', nav_presets: 'プリセット', nav_music: '音楽', nav_settings: '設定',
+      presets_title: 'プリセット', music_title: '音楽', settings_title: '設定',
+      from_current: '現在の状態から', from_scratch: '新規作成',
+      pin_title: '常に手前に表示', pin_desc: '他のウィンドウの上に固定します',
+      fade_title: 'フェード時間', fade_desc: 'シーン切替時のトランジション',
+      lang_title: '言語', lang_desc: '表示言語',
+      tray_note: '閉じるとタスクトレイに格納されます。完全に終了するにはトレイを右クリックしてください。',
+      capture_current: '現在を取得', name_label: '名前', icon_label: 'アイコン',
+      hotkey_btn: 'ショートカット', delete_btn: '削除', cancel_btn: 'キャンセル', save_btn: '保存',
+      mute: 'ミュート', silence: '消音', on: 'オン', no_audio: '再生中のアプリがありません。',
+      no_playback: '再生停止中', open_spotify: 'Spotifyを開いて操作します',
+      playing: '再生中', paused: '一時停止', disconnected: '未接続',
+      new_preset: '新規プリセット', edit_preset: 'プリセット編集', current_scene: '現在のシーン',
+      no_hotkey: 'キー未設定', rule_1: '件', rule_n: '件',
+      add_app: '+ アプリを追加...', system_label: 'システム', master_sys: 'マスター (システム)',
+      hotkey_used: '使用中のショートカット: ', name_ph: '例: 音楽、勉強...'
+    },
+    ru: {
+      nav_mixer: 'Микшер', nav_presets: 'Пресеты', nav_music: 'Музыка', nav_settings: 'Настройки',
+      presets_title: 'Пресеты', music_title: 'Музыка', settings_title: 'Настройки',
+      from_current: 'Из текущего', from_scratch: 'С нуля',
+      pin_title: 'Поверх всех окон', pin_desc: 'Закрепить окно поверх других приложений',
+      fade_title: 'Плавный переход', fade_desc: 'Длительность затухания',
+      lang_title: 'Язык', lang_desc: 'Язык интерфейса',
+      tray_note: 'При закрытии окно сворачивается в трей. Для выхода нажмите правой кнопкой по значку в трее.',
+      capture_current: 'Захватить текущие', name_label: 'Имя', icon_label: 'Значок',
+      hotkey_btn: 'Клавиша', delete_btn: 'Удалить', cancel_btn: 'Отмена', save_btn: 'Сохранить',
+      mute: 'Без зв.', silence: 'Заглуш.', on: 'Вкл', no_audio: 'Нет активных аудиоприложений.',
+      no_playback: 'Не воспроизводится', open_spotify: 'Откройте Spotify для управления',
+      playing: 'Играет', paused: 'Пауза', disconnected: 'Отключено',
+      new_preset: 'Новый пресет', edit_preset: 'Редактировать', current_scene: 'Текущая сцена',
+      no_hotkey: 'Нет клавиши', rule_1: 'правило', rule_n: 'правил',
+      add_app: '+ Добавить...', system_label: 'Система', master_sys: 'Мастер (Система)',
+      hotkey_used: 'Клавиша занята: ', name_ph: 'Напр. Музыка...'
+    },
+    zh: {
+      nav_mixer: '混音器', nav_presets: '预设', nav_music: '音乐', nav_settings: '设置',
+      presets_title: '预设', music_title: '音乐', settings_title: '设置',
+      from_current: '从当前状态', from_scratch: '从零创建',
+      pin_title: '窗口置顶', pin_desc: '将窗口固定在其他应用之上',
+      fade_title: '渐变过渡', fade_desc: '切换场景时的淡入淡出时长',
+      lang_title: '语言', lang_desc: '界面显示语言',
+      tray_note: '关闭窗口将最小化到系统托盘。右键托盘图标选择退出即可完全关闭。',
+      capture_current: '捕获当前音量', name_label: '名称', icon_label: '图标',
+      hotkey_btn: '快捷键', delete_btn: '删除', cancel_btn: '取消', save_btn: '保存',
+      mute: '已静音', silence: '静音', on: '开启', no_audio: '当前没有正在播放音频的应用。',
+      no_playback: '未播放', open_spotify: '打开 Spotify 以控制播放',
+      playing: '正在播放', paused: '已暂停', disconnected: '未连接',
+      new_preset: '新建预设', edit_preset: '编辑预设', current_scene: '当前场景',
+      no_hotkey: '无快捷键', rule_1: '条规则', rule_n: '条规则',
+      add_app: '+ 添加应用...', system_label: '系统', master_sys: '主音量 (系统)',
+      hotkey_used: '快捷键已被占用: ', name_ph: '例如：音乐、学习...'
+    },
+    pt: {
+      nav_mixer: 'Mixer', nav_presets: 'Presets', nav_music: 'Música', nav_settings: 'Ajustes',
+      presets_title: 'Presets', music_title: 'Música', settings_title: 'Configurações',
+      from_current: 'Do estado atual', from_scratch: 'Do zero',
+      pin_title: 'Fixar no topo', pin_desc: 'Mantém a janela acima de outros apps',
+      fade_title: 'Transição', fade_desc: 'Duração do fade ao trocar de cena',
+      lang_title: 'Idioma', lang_desc: 'Idioma da interface',
+      tray_note: 'Ao fechar a janela, o app fica oculto na bandeja. Clique com o botão direito na bandeja → Sair.',
+      capture_current: 'Capturar atuais', name_label: 'Nome', icon_label: 'Ícone',
+      hotkey_btn: 'Atalho', delete_btn: 'Excluir', cancel_btn: 'Cancelar', save_btn: 'Salvar',
+      mute: 'Mudo', silence: 'Silenciar', on: 'On', no_audio: 'Nenhum aplicativo reproduzindo áudio no momento.',
+      no_playback: 'Sem reprodução', open_spotify: 'Abra o Spotify para controlar a música',
+      playing: 'Tocando', paused: 'Pausado', disconnected: 'Desconectado',
+      new_preset: 'Novo Preset', edit_preset: 'Editar Preset', current_scene: 'Cena atual',
+      no_hotkey: 'Sem atalho', rule_1: 'regra', rule_n: 'regras',
+      add_app: '+ Adicionar app...', system_label: 'Sistema', master_sys: 'Master (Sistema)',
+      hotkey_used: 'Atalho já em uso: ', name_ph: 'Ex. Música, Estudo...'
+    }
+  };
+
+  const LANG_OPTIONS = [
+    { value: 'es', label: 'Español' },
+    { value: 'en', label: 'English' },
+    { value: 'fr', label: 'Français' },
+    { value: 'de', label: 'Deutsch' },
+    { value: 'ja', label: '日本語' },
+    { value: 'ru', label: 'Русский' },
+    { value: 'zh', label: '中文' },
+    { value: 'pt', label: 'Português' },
+  ];
+
+  const FADE_OPTIONS = [
+    { value: '0', label: '0 ms' },
+    { value: '300', label: '300 ms' },
+    { value: '500', label: '500 ms' },
+    { value: '1000', label: '1000 ms' },
+    { value: '1500', label: '1500 ms' },
+    { value: '2000', label: '2000 ms' },
+  ];
+
   const PRESET_ICONS = {
     music: '<svg viewBox="0 0 24 24" class="icon-sm"><path d="M12 3v10.55A4 4 0 1 0 14 17V7h4V3h-6z"/></svg>',
     book: '<svg viewBox="0 0 24 24" class="icon-sm"><path d="M18 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2zM6 4h5v8l-2.5-1.5L6 12V4z"/></svg>',
@@ -18,14 +185,14 @@
   };
 
   const ACCENT_SWATCHES = [
-    { id: 'system', label: 'Sistema', hex: null },
-    { id: '#4A55A2', label: 'Índigo', hex: '#4A55A2' },
-    { id: '#0078D4', label: 'Azul', hex: '#0078D4' },
-    { id: '#00897B', label: 'Esmeralda', hex: '#00897B' },
-    { id: '#7E57C2', label: 'Violeta', hex: '#7E57C2' },
-    { id: '#C65D3B', label: 'Terracota', hex: '#C65D3B' },
-    { id: '#C2185B', label: 'Rosa', hex: '#C2185B' },
-    { id: '#B27A00', label: 'Ámbar', hex: '#B27A00' },
+    { id: 'system', hex: null },
+    { id: '#4A55A2', hex: '#4A55A2' },
+    { id: '#0078D4', hex: '#0078D4' },
+    { id: '#00897B', hex: '#00897B' },
+    { id: '#7E57C2', hex: '#7E57C2' },
+    { id: '#C65D3B', hex: '#C65D3B' },
+    { id: '#C2185B', hex: '#C2185B' },
+    { id: '#B27A00', hex: '#B27A00' },
   ];
 
   const SVG_SPEAKER = '<svg viewBox="0 0 24 24" class="icon-xs"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3A4.5 4.5 0 0 0 14 7.97v8.05c1.48-.73 2.5-2.25 2.5-4.02z"/></svg>';
@@ -34,14 +201,11 @@
   const SVG_EDIT = '<svg viewBox="0 0 24 24" class="icon-xs"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04a1 1 0 0 0 0-1.41l-2.34-2.34a1 1 0 0 0-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/></svg>';
   const SVG_TRASH = '<svg viewBox="0 0 24 24" class="icon-xs"><path d="M6 19c0 1.1.9 2 2 2h8a2 2 0 0 0 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"/></svg>';
   const SVG_CLOSE = '<svg viewBox="0 0 24 24" class="icon-xs"><path d="M18.3 5.71 12 12l6.3 6.29-1.41 1.42L10.59 13.4 4.29 19.71 2.88 18.3 9.17 12 2.88 5.71 4.29 4.29 10.59 10.6l6.3-6.31z"/></svg>';
+  const SVG_CHEVRON = '<svg viewBox="0 0 24 24" class="icon-xs"><path d="M7 10l5 5 5-5z"/></svg>';
 
-  // Desactivar menú contextual y DevTools
   document.addEventListener('contextmenu', (e) => e.preventDefault());
   document.addEventListener('keydown', (e) => {
-    if (
-      e.key === 'F12' ||
-      (e.ctrlKey && e.shiftKey && ['I', 'J', 'C'].includes(e.key.toUpperCase()))
-    ) {
+    if (e.key === 'F12' || (e.ctrlKey && e.shiftKey && ['I', 'J', 'C'].includes(e.key.toUpperCase()))) {
       e.preventDefault();
     }
   });
@@ -53,6 +217,7 @@
     resolved_theme: 'dark',
     accent_color: 'system',
     system_accent_hex: '#4A55A2',
+    language: 'es',
     presets: [],
     active_preset_id: null,
     conflicts: [],
@@ -70,6 +235,13 @@
   let editorState = null;
   let smoothedPeaks = {};
   let lastThemeKey = '';
+  let lastSettingsKey = '';
+  let lastLang = '';
+
+  function t(key) {
+    const lang = appState.language || 'es';
+    return (I18N[lang] && I18N[lang][key]) || I18N.es[key] || key;
+  }
 
   function post(type, payload = {}) {
     if (window.ipc && window.ipc.postMessage) {
@@ -77,7 +249,6 @@
     }
   }
 
-  // Color helpers for Material 3 tonal palette from any hex accent
   function hexToHsl(hex) {
     const clean = (hex || '#4A55A2').replace('#', '');
     const num = parseInt(clean.length === 6 ? clean : '4A55A2', 16);
@@ -111,7 +282,7 @@
 
     document.body.setAttribute('data-mode', mode);
     const { h, s } = hexToHsl(rawHex);
-    const sat = Math.max(35, Math.min(85, s));
+    const sat = Math.max(38, Math.min(85, s));
     const root = document.documentElement.style;
 
     if (mode === 'dark') {
@@ -131,12 +302,86 @@
     }
   }
 
+  function applyTranslations() {
+    const lang = appState.language || 'es';
+    if (lang === lastLang) return;
+    lastLang = lang;
+    document.querySelectorAll('[data-i18n]').forEach((el) => {
+      const k = el.getAttribute('data-i18n');
+      if (k) el.textContent = t(k);
+    });
+    const inputNameEl = document.getElementById('input-preset-name');
+    if (inputNameEl) inputNameEl.placeholder = t('name_ph');
+    lastChannelSignature = '';
+    renderPresets();
+    renderChannels();
+    renderMusic();
+  }
+
+  // Custom Material 3 Expressive Dropdown
+  function setupM3Dropdown(container, options, getSelected, onSelect) {
+    container.innerHTML = '';
+    const trigger = document.createElement('button');
+    trigger.className = 'm3-dd-trigger';
+    const labelSpan = document.createElement('span');
+    trigger.appendChild(labelSpan);
+    trigger.insertAdjacentHTML('beforeend', SVG_CHEVRON);
+
+    const menu = document.createElement('div');
+    menu.className = 'm3-dd-menu hidden';
+
+    const syncLabel = () => {
+      const cur = String(getSelected());
+      const found = options.find((o) => String(o.value) === cur) || options[0];
+      labelSpan.textContent = found ? found.label : cur;
+      menu.querySelectorAll('.m3-dd-item').forEach((item) => {
+        item.classList.toggle('selected', item.dataset.val === cur);
+      });
+    };
+
+    options.forEach((opt) => {
+      const item = document.createElement('button');
+      item.className = 'm3-dd-item';
+      item.dataset.val = String(opt.value);
+      item.textContent = opt.label;
+      item.addEventListener('click', (e) => {
+        e.stopPropagation();
+        menu.classList.add('hidden');
+        onSelect(opt.value);
+        syncLabel();
+      });
+      menu.appendChild(item);
+    });
+
+    trigger.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const wasHidden = menu.classList.contains('hidden');
+      document.querySelectorAll('.m3-dd-menu').forEach((m) => m.classList.add('hidden'));
+      if (wasHidden) {
+        syncLabel();
+        menu.classList.remove('hidden');
+      }
+    });
+
+    container.appendChild(trigger);
+    container.appendChild(menu);
+    container._syncLabel = syncLabel;
+    syncLabel();
+  }
+
+  document.addEventListener('click', () => {
+    document.querySelectorAll('.m3-dd-menu').forEach((m) => m.classList.add('hidden'));
+  });
+
   // DOM References
   const toastBanner = document.getElementById('toast-banner');
   const mixerPresetsStrip = document.getElementById('mixer-presets-strip');
   const channelsList = document.getElementById('channels-list');
 
-  const selectFadePresets = document.getElementById('select-fade-presets');
+  const ddFadePresets = document.getElementById('dd-fade-presets');
+  const ddFadeSettings = document.getElementById('dd-fade-settings');
+  const ddLanguage = document.getElementById('dd-language');
+
   const btnNewFromCurrent = document.getElementById('btn-new-from-current');
   const btnNewBlank = document.getElementById('btn-new-blank');
   const hotkeyWarning = document.getElementById('hotkey-warning');
@@ -151,14 +396,20 @@
   const iconSpPlay = document.getElementById('icon-sp-play');
   const iconSpPause = document.getElementById('icon-sp-pause');
 
+  const miniSpTitle = document.getElementById('mini-sp-title');
+  const miniSpArtist = document.getElementById('mini-sp-artist');
+  const btnMiniPrev = document.getElementById('btn-mini-prev');
+  const btnMiniPlay = document.getElementById('btn-mini-play');
+  const btnMiniNext = document.getElementById('btn-mini-next');
+  const iconMiniPlay = document.getElementById('icon-mini-play');
+  const iconMiniPause = document.getElementById('icon-mini-pause');
+
   const btnThemeSystem = document.getElementById('btn-theme-system');
   const btnThemeLight = document.getElementById('btn-theme-light');
   const btnThemeDark = document.getElementById('btn-theme-dark');
   const accentSwatchesEl = document.getElementById('accent-swatches');
   const btnPinSwitch = document.getElementById('btn-pin-switch');
-  const selectFadeSettings = document.getElementById('select-fade-settings');
 
-  // Preset Modal
   const modal = document.getElementById('preset-modal');
   const dialogTitle = document.getElementById('dialog-title');
   const inputName = document.getElementById('input-preset-name');
@@ -185,7 +436,41 @@
     selectHkKey.appendChild(opt);
   });
 
-  // Bottom Navigation Bar
+  setupM3Dropdown(
+    ddFadePresets,
+    FADE_OPTIONS.map((o) => ({ value: o.value, label: `Fade ${o.label}` })),
+    () => appState.fade_duration_ms ?? 500,
+    (v) => {
+      appState.fade_duration_ms = Number(v);
+      post('set_fade', { ms: Number(v) });
+      if (ddFadeSettings._syncLabel) ddFadeSettings._syncLabel();
+    }
+  );
+
+  setupM3Dropdown(
+    ddFadeSettings,
+    FADE_OPTIONS,
+    () => appState.fade_duration_ms ?? 500,
+    (v) => {
+      appState.fade_duration_ms = Number(v);
+      post('set_fade', { ms: Number(v) });
+      if (ddFadePresets._syncLabel) ddFadePresets._syncLabel();
+    }
+  );
+
+  setupM3Dropdown(
+    ddLanguage,
+    LANG_OPTIONS,
+    () => appState.language || 'es',
+    (v) => {
+      appState.language = v;
+      applyTranslations();
+      lastSettingsKey = '';
+      renderSettings();
+      post('set_language', { lang: v });
+    }
+  );
+
   document.querySelectorAll('.nav-item').forEach((btn) => {
     btn.addEventListener('click', () => {
       activeTab = btn.dataset.tab;
@@ -217,7 +502,14 @@
     return PRESET_ICONS[iconId] || PRESET_ICONS.sliders;
   }
 
-  // Presets UI (Quick strip in Mixer + Full list in Presets tab)
+  function escapeHtml(str) {
+    return String(str)
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;');
+  }
+
   function renderPresets() {
     mixerPresetsStrip.innerHTML = '';
     presetsManageList.innerHTML = '';
@@ -225,7 +517,6 @@
     (appState.presets || []).forEach((p) => {
       const isActive = appState.active_preset_id === p.id;
 
-      // 1. Quick chip in Mixer
       const chip = document.createElement('button');
       chip.className = 'quick-preset-chip' + (isActive ? ' active' : '');
       chip.innerHTML = `${getPresetIconSvg(p.icon)}<span>${escapeHtml(p.name)}</span>` +
@@ -233,7 +524,6 @@
       chip.addEventListener('click', () => post('apply_preset', { id: p.id }));
       mixerPresetsStrip.appendChild(chip);
 
-      // 2. Full card in Presets tab
       const card = document.createElement('div');
       card.className = 'preset-manage-card' + (isActive ? ' active' : '');
 
@@ -253,9 +543,9 @@
 
       const subEl = document.createElement('div');
       subEl.className = 'preset-manage-sub';
-      const hkStr = p.hotkey ? formatHotkey(p.hotkey) : 'Sin atajo';
+      const hkStr = p.hotkey ? formatHotkey(p.hotkey) : t('no_hotkey');
       const count = (p.rules || []).length;
-      subEl.textContent = `${hkStr} · ${count} ${count === 1 ? 'regla' : 'reglas'}`;
+      subEl.textContent = `${hkStr} · ${count} ${count === 1 ? t('rule_1') : t('rule_n')}`;
 
       info.appendChild(nameEl);
       info.appendChild(subEl);
@@ -268,13 +558,11 @@
       const editBtn = document.createElement('button');
       editBtn.className = 'icon-action-btn';
       editBtn.innerHTML = SVG_EDIT;
-      editBtn.title = 'Editar preset';
       editBtn.addEventListener('click', () => openEditPreset(p));
 
       const delBtn = document.createElement('button');
       delBtn.className = 'icon-action-btn danger';
       delBtn.innerHTML = SVG_TRASH;
-      delBtn.title = 'Eliminar preset';
       delBtn.addEventListener('click', () => post('delete_preset', { id: p.id }));
 
       actions.appendChild(editBtn);
@@ -286,31 +574,27 @@
     });
 
     if (appState.conflicts && appState.conflicts.length > 0) {
-      hotkeyWarning.textContent = `Atajo en uso por otra app: ${appState.conflicts.join(', ')}`;
+      hotkeyWarning.textContent = `${t('hotkey_used')}${appState.conflicts.join(', ')}`;
       hotkeyWarning.classList.remove('hidden');
     } else {
       hotkeyWarning.classList.add('hidden');
     }
   }
 
-  function escapeHtml(str) {
-    return String(str)
-      .replace(/&/g, '&amp;')
-      .replace(/</g, '&lt;')
-      .replace(/>/g, '&gt;')
-      .replace(/"/g, '&quot;');
+  function isTabletMode() {
+    return window.innerWidth >= 600;
   }
 
-  // Channels & Sliders
   function attachSliderBehavior(wrap, onChange) {
-    const updateFromClientX = (clientX) => {
+    const updateFromPointer = (clientX, clientY) => {
       const rect = wrap.getBoundingClientRect();
-      const val = Math.max(0, Math.min(1, (clientX - rect.left) / rect.width));
-      const fill = wrap.querySelector('.m3-slider-fill');
-      const thumb = wrap.querySelector('.m3-slider-thumb');
-      const pct = (val * 100).toFixed(1) + '%';
-      fill.style.width = pct;
-      thumb.style.left = pct;
+      let val;
+      if (isTabletMode()) {
+        val = Math.max(0, Math.min(1, (rect.bottom - clientY) / rect.height));
+      } else {
+        val = Math.max(0, Math.min(1, (clientX - rect.left) / rect.width));
+      }
+      applySliderVisual(wrap, val);
       const card = wrap.closest('.channel-card');
       if (card) {
         const pctEl = card.querySelector('.channel-pct');
@@ -324,12 +608,12 @@
       wrap.setPointerCapture(e.pointerId);
       wrap.classList.add('dragging');
       draggingKey = wrap.dataset.key;
-      updateFromClientX(e.clientX);
+      updateFromPointer(e.clientX, e.clientY);
     });
 
     wrap.addEventListener('pointermove', (e) => {
       if (draggingKey === wrap.dataset.key && e.buttons > 0) {
-        updateFromClientX(e.clientX);
+        updateFromPointer(e.clientX, e.clientY);
       }
     });
 
@@ -343,6 +627,19 @@
     wrap.addEventListener('pointercancel', endDrag);
   }
 
+  function applySliderVisual(wrap, val) {
+    const fill = wrap.querySelector('.m3-slider-fill');
+    const thumb = wrap.querySelector('.m3-slider-thumb');
+    const pct = (val * 100).toFixed(1) + '%';
+    if (isTabletMode()) {
+      if (fill) { fill.style.height = pct; fill.style.width = '100%'; }
+      if (thumb) { thumb.style.bottom = pct; thumb.style.top = 'auto'; }
+    } else {
+      if (fill) { fill.style.width = pct; fill.style.height = '100%'; }
+      if (thumb) { thumb.style.left = pct; thumb.style.top = '50%'; thumb.style.bottom = 'auto'; }
+    }
+  }
+
   function createChannelCard({ key, name, iconUrl, fallbackSvg, volume, muted, isMaster }) {
     const card = document.createElement('div');
     card.className = 'channel-card' + (isMaster ? ' master' : '') + (muted ? ' muted' : '');
@@ -353,7 +650,7 @@
 
     const identity = document.createElement('div');
     identity.className = 'channel-identity';
-    identity.title = isMaster ? 'Volumen Master del Sistema' : `${name} (${key})`;
+    identity.title = isMaster ? 'Master' : `${name} (${key})`;
 
     if (iconUrl) {
       const img = document.createElement('img');
@@ -381,7 +678,7 @@
 
     const muteBtn = document.createElement('button');
     muteBtn.className = 'mute-btn' + (muted ? ' muted' : '');
-    muteBtn.textContent = muted ? 'Mute' : 'Silenciar';
+    muteBtn.textContent = muted ? t('mute') : t('silence');
     muteBtn.addEventListener('click', () => {
       const currentlyMuted = card.classList.contains('muted');
       if (isMaster) {
@@ -396,6 +693,9 @@
     top.appendChild(identity);
     top.appendChild(right);
 
+    const faderArea = document.createElement('div');
+    faderArea.className = 'channel-fader-area';
+
     const sliderWrap = document.createElement('div');
     sliderWrap.className = 'm3-slider-wrap';
     sliderWrap.dataset.key = key;
@@ -404,15 +704,14 @@
     track.className = 'm3-slider-track';
     const fill = document.createElement('div');
     fill.className = 'm3-slider-fill';
-    fill.style.width = (volume * 100).toFixed(1) + '%';
     track.appendChild(fill);
 
     const thumb = document.createElement('div');
     thumb.className = 'm3-slider-thumb';
-    thumb.style.left = (volume * 100).toFixed(1) + '%';
 
     sliderWrap.appendChild(track);
     sliderWrap.appendChild(thumb);
+    applySliderVisual(sliderWrap, volume);
 
     attachSliderBehavior(sliderWrap, (v) => {
       if (isMaster) {
@@ -428,9 +727,11 @@
     vuFill.className = 'vu-fill';
     vuTrack.appendChild(vuFill);
 
+    faderArea.appendChild(sliderWrap);
+    faderArea.appendChild(vuTrack);
+
     card.appendChild(top);
-    card.appendChild(sliderWrap);
-    card.appendChild(vuTrack);
+    card.appendChild(faderArea);
     return card;
   }
 
@@ -448,23 +749,27 @@
     const muteBtn = card.querySelector('.mute-btn');
     if (muteBtn) {
       muteBtn.classList.toggle('muted', muted);
-      muteBtn.textContent = muted ? 'Mute' : 'Silenciar';
+      muteBtn.textContent = muted ? t('mute') : t('silence');
     }
 
     if (draggingKey !== card.dataset.key) {
-      const pct = (volume * 100).toFixed(1) + '%';
-      const fill = card.querySelector('.m3-slider-fill');
-      const thumb = card.querySelector('.m3-slider-thumb');
+      const wrap = card.querySelector('.m3-slider-wrap');
+      if (wrap) applySliderVisual(wrap, volume);
       const pctEl = card.querySelector('.channel-pct');
-      if (fill) fill.style.width = pct;
-      if (thumb) thumb.style.left = pct;
       if (pctEl) pctEl.textContent = Math.round(volume * 100) + '%';
     }
 
     const vuFill = card.querySelector('.vu-fill');
     if (vuFill) {
       const p = muted ? 0 : smoothPeak(card.dataset.key, peak);
-      vuFill.style.width = (p * 100).toFixed(1) + '%';
+      const pct = (p * 100).toFixed(1) + '%';
+      if (isTabletMode()) {
+        vuFill.style.height = pct;
+        vuFill.style.width = '100%';
+      } else {
+        vuFill.style.width = pct;
+        vuFill.style.height = '100%';
+      }
     }
   }
 
@@ -498,7 +803,7 @@
       if (!appState.channels || appState.channels.length === 0) {
         const empty = document.createElement('div');
         empty.className = 'empty-state';
-        empty.textContent = 'No hay aplicaciones reproduciendo audio en este momento.';
+        empty.textContent = t('no_audio');
         channelsList.appendChild(empty);
       } else {
         appState.channels.forEach((ch) => {
@@ -530,28 +835,43 @@
     });
   }
 
-  // Música (Spotify)
+  // Re-sync slider orientation on window resize between mobile & tablet
+  window.addEventListener('resize', () => {
+    renderChannels();
+  });
+
+  // Spotify (both Música tab & Mini bar in Mixer)
   function renderMusic() {
     const sp = appState.spotify || {};
-    if (sp.connected && sp.title) {
-      spTitle.textContent = sp.title;
-      spArtist.textContent = sp.artist || 'Spotify';
-      spStatusChip.textContent = sp.is_playing ? 'Reproduciendo' : 'En pausa';
-    } else {
-      spTitle.textContent = 'Sin reproducción';
-      spArtist.textContent = 'Abre Spotify para controlar la música';
-      spStatusChip.textContent = 'Desconectado';
-    }
+    const hasTrack = !!(sp.connected && sp.title);
+    const titleStr = hasTrack ? sp.title : t('no_playback');
+    const artistStr = hasTrack ? (sp.artist || 'Spotify') : t('open_spotify');
+
+    spTitle.textContent = titleStr;
+    spArtist.textContent = artistStr;
+    spStatusChip.textContent = hasTrack ? (sp.is_playing ? t('playing') : t('paused')) : t('disconnected');
     iconSpPlay.classList.toggle('hidden', !!sp.is_playing);
     iconSpPause.classList.toggle('hidden', !sp.is_playing);
+
+    miniSpTitle.textContent = titleStr;
+    miniSpArtist.textContent = hasTrack ? (sp.artist || 'Spotify') : 'Spotify';
+    iconMiniPlay.classList.toggle('hidden', !!sp.is_playing);
+    iconMiniPause.classList.toggle('hidden', !sp.is_playing);
   }
 
   btnSpPrev.addEventListener('click', () => post('media_prev'));
   btnSpPlay.addEventListener('click', () => post('media_toggle_play'));
   btnSpNext.addEventListener('click', () => post('media_next'));
+  btnMiniPrev.addEventListener('click', () => post('media_prev'));
+  btnMiniPlay.addEventListener('click', () => post('media_toggle_play'));
+  btnMiniNext.addEventListener('click', () => post('media_next'));
 
   // Configuraciones
   function renderSettings() {
+    const sKey = `${appState.theme_mode}|${appState.accent_color}|${appState.system_accent_hex}|${appState.always_on_top}|${appState.fade_duration_ms}|${appState.language}`;
+    if (sKey === lastSettingsKey) return;
+    lastSettingsKey = sKey;
+
     const mode = appState.theme_mode || 'system';
     btnThemeSystem.classList.toggle('active', mode === 'system');
     btnThemeLight.classList.toggle('active', mode === 'light');
@@ -560,19 +880,28 @@
     btnPinSwitch.classList.toggle('on', !!appState.always_on_top);
     btnPinSwitch.setAttribute('aria-checked', String(!!appState.always_on_top));
 
-    const fadeVal = String(appState.fade_duration_ms ?? 500);
-    if (document.activeElement !== selectFadePresets) selectFadePresets.value = fadeVal;
-    if (document.activeElement !== selectFadeSettings) selectFadeSettings.value = fadeVal;
+    if (ddFadePresets._syncLabel) ddFadePresets._syncLabel();
+    if (ddFadeSettings._syncLabel) ddFadeSettings._syncLabel();
+    if (ddLanguage._syncLabel) ddLanguage._syncLabel();
 
     accentSwatchesEl.innerHTML = '';
     ACCENT_SWATCHES.forEach((sw) => {
+      const isSelected = appState.accent_color === sw.id;
       const btn = document.createElement('button');
-      btn.className = 'swatch-btn' + (appState.accent_color === sw.id ? ' active' : '');
       const dotColor = sw.hex || appState.system_accent_hex || '#4A55A2';
-      btn.innerHTML = `<span class="swatch-dot" style="background:${dotColor}"></span><span>${sw.label}</span>`;
+
+      if (sw.id === 'system') {
+        btn.className = 'swatch-system' + (isSelected ? ' active' : '');
+        btn.innerHTML = `<span class="swatch-dot" style="background:${dotColor}"></span><span>${t('system_label')}</span>`;
+      } else {
+        btn.className = 'swatch-circle' + (isSelected ? ' active' : '');
+        btn.style.background = dotColor;
+      }
+
       btn.addEventListener('click', () => {
         appState.accent_color = sw.id;
         applyThemeAndAccent();
+        lastSettingsKey = '';
         renderSettings();
         post('set_accent', { color: sw.id });
       });
@@ -580,12 +909,25 @@
     });
   }
 
-  btnThemeSystem.addEventListener('click', () => post('set_theme', { mode: 'system' }));
-  btnThemeLight.addEventListener('click', () => post('set_theme', { mode: 'light' }));
-  btnThemeDark.addEventListener('click', () => post('set_theme', { mode: 'dark' }));
+  btnThemeSystem.addEventListener('click', () => {
+    appState.theme_mode = 'system';
+    post('set_theme', { mode: 'system' });
+  });
+  btnThemeLight.addEventListener('click', () => {
+    appState.theme_mode = 'light';
+    appState.resolved_theme = 'light';
+    applyThemeAndAccent();
+    renderSettings();
+    post('set_theme', { mode: 'light' });
+  });
+  btnThemeDark.addEventListener('click', () => {
+    appState.theme_mode = 'dark';
+    appState.resolved_theme = 'dark';
+    applyThemeAndAccent();
+    renderSettings();
+    post('set_theme', { mode: 'dark' });
+  });
   btnPinSwitch.addEventListener('click', () => post('toggle_pin'));
-  selectFadePresets.addEventListener('change', () => post('set_fade', { ms: Number(selectFadePresets.value) }));
-  selectFadeSettings.addEventListener('change', () => post('set_fade', { ms: Number(selectFadeSettings.value) }));
 
   // Presets Editor
   btnNewFromCurrent.addEventListener('click', () => openNewPreset(true));
@@ -595,7 +937,7 @@
     editorState = {
       isNew: true,
       id: `preset-${Date.now()}`,
-      name: fromCurrent ? 'Escena actual' : 'Nuevo Preset',
+      name: fromCurrent ? t('current_scene') : t('new_preset'),
       icon: fromCurrent ? 'sliders' : 'star',
       useHotkey: true,
       ctrl: true,
@@ -634,7 +976,7 @@
 
   function renderEditor() {
     if (!editorState) return;
-    dialogTitle.textContent = editorState.isNew ? 'Nuevo Preset' : 'Editar Preset';
+    dialogTitle.textContent = editorState.isNew ? t('new_preset') : t('edit_preset');
     inputName.value = editorState.name;
 
     iconPickerEl.innerHTML = '';
@@ -684,7 +1026,7 @@
 
       const mute = document.createElement('button');
       mute.className = 'mute-btn' + (rule.muted ? ' muted' : '');
-      mute.textContent = rule.muted ? 'Mute' : 'On';
+      mute.textContent = rule.muted ? t('mute') : t('on');
       mute.addEventListener('click', () => {
         rule.muted = !rule.muted;
         renderEditor();
@@ -706,11 +1048,11 @@
       editorRulesEl.appendChild(row);
     });
 
-    selectAddApp.innerHTML = '<option value="">+ Agregar app...</option>';
+    selectAddApp.innerHTML = `<option value="">${t('add_app')}</option>`;
     if (!editorState.rules.some((r) => r.target_exe === '__master__')) {
       const opt = document.createElement('option');
       opt.value = JSON.stringify({ exe: '__master__', name: 'Master' });
-      opt.textContent = 'Master (Sistema)';
+      opt.textContent = t('master_sys');
       selectAddApp.appendChild(opt);
     }
     (appState.channels || []).forEach((ch) => {
@@ -813,7 +1155,6 @@
     modal.classList.add('hidden');
   });
 
-  // Rust -> JS State Push
   window.__onAudioState = (next) => {
     const prevPreset = appState.active_preset_id;
     const prevPresetsJson = JSON.stringify(appState.presets);
@@ -821,6 +1162,7 @@
 
     appState = next;
     applyThemeAndAccent();
+    applyTranslations();
     renderSettings();
     renderMusic();
 
@@ -837,8 +1179,8 @@
     renderChannels();
   };
 
-  // Initial render
   applyThemeAndAccent();
+  applyTranslations();
   renderPresets();
   renderChannels();
   renderMusic();

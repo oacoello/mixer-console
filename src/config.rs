@@ -92,6 +92,8 @@ pub struct AppConfig {
     pub theme_mode: String,
     #[serde(default = "default_accent_color")]
     pub accent_color: String,
+    #[serde(default = "default_language")]
+    pub language: String,
     pub presets: Vec<Preset>,
     /// Etiquetas personalizadas opcionales por ejecutable
     #[serde(default)]
@@ -106,6 +108,10 @@ fn default_accent_color() -> String {
     "system".to_string()
 }
 
+fn default_language() -> String {
+    "es".to_string()
+}
+
 impl Default for AppConfig {
     fn default() -> Self {
         Self {
@@ -114,6 +120,7 @@ impl Default for AppConfig {
             fade_duration_ms: 500,
             theme_mode: default_theme_mode(),
             accent_color: default_accent_color(),
+            language: default_language(),
             custom_names: BTreeMap::new(),
             presets: vec![
                 Preset {
@@ -266,7 +273,17 @@ pub fn read_windows_accent_hex() -> String {
         let r = abgr & 0xFF;
         let g = (abgr >> 8) & 0xFF;
         let b = (abgr >> 16) & 0xFF;
-        return format!("#{:02X}{:02X}{:02X}", r, g, b);
+        if r != 0 || g != 0 || b != 0 {
+            return format!("#{:02X}{:02X}{:02X}", r, g, b);
+        }
+    }
+    if let Some(argb) = read_hkcu_dword("Software\\Microsoft\\Windows\\DWM", "ColorizationColor") {
+        let r = (argb >> 16) & 0xFF;
+        let g = (argb >> 8) & 0xFF;
+        let b = argb & 0xFF;
+        if r != 0 || g != 0 || b != 0 {
+            return format!("#{:02X}{:02X}{:02X}", r, g, b);
+        }
     }
     "#4A55A2".to_string()
 }

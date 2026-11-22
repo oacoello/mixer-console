@@ -34,6 +34,7 @@ enum IpcMessage {
     SetFade { ms: u64 },
     SetTheme { mode: String },
     SetAccent { color: String },
+    SetLanguage { lang: String },
     ApplyPreset { id: String },
     SetMasterVolume { volume: f32 },
     SetMasterMute { muted: bool },
@@ -65,6 +66,7 @@ struct UiState<'a> {
     resolved_theme: &'a str,
     accent_color: &'a str,
     system_accent_hex: String,
+    language: &'a str,
     presets: &'a [Preset],
     active_preset_id: Option<&'a str>,
     conflicts: Vec<String>,
@@ -131,6 +133,7 @@ fn build_state_json(
         resolved_theme,
         accent_color: &config.accent_color,
         system_accent_hex: read_windows_accent_hex(),
+        language: &config.language,
         presets: &config.presets,
         active_preset_id,
         conflicts: hotkeys.get_conflicts(),
@@ -291,6 +294,10 @@ fn main() -> wry::Result<()> {
                         }
                         IpcMessage::SetAccent { color } => {
                             config.accent_color = color;
+                            let _ = config.save();
+                        }
+                        IpcMessage::SetLanguage { lang } => {
+                            config.language = lang;
                             let _ = config.save();
                         }
                         IpcMessage::ApplyPreset { id } => {
