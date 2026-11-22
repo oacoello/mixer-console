@@ -192,7 +192,7 @@ fn main() -> wry::Result<()> {
 
     let event_loop = EventLoop::new();
     let window = WindowBuilder::new()
-        .with_title("Consola de Audio")
+        .with_title("My mixer")
         .with_inner_size(LogicalSize::new(380.0, 600.0))
         .with_min_inner_size(LogicalSize::new(330.0, 460.0))
         .with_always_on_top(config.always_on_top)

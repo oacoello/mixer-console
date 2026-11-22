@@ -1,6 +1,6 @@
 [package]
 name = "production-mixer"
-version = "0.1.0"
+version = "1.0.0"
 edition = "2021"
 description = "Consola de mezcla de volúmenes por aplicación en tiempo real con interfaz Material 3 Expressive"
 

@@ -63,7 +63,7 @@ impl TrayManager {
 
         let tray_icon = TrayIconBuilder::new()
             .with_menu(Box::new(menu))
-            .with_tooltip("Consola de Audio - Mezclador en vivo")
+            .with_tooltip("My mixer")
             .with_icon(icon)
             .build()
             .ok()?;
